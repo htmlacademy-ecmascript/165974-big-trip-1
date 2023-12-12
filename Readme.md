@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
 * Студент: [Elena Markova](https://up.htmlacademy.ru/ecmascript-individual/1/user/165974).
-* Наставник: `Неизвестно`.
+* Наставник: [Семён Якушев](https://github.com/saimon395).
 
 ---
 
