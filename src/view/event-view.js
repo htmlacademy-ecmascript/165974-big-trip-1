@@ -1,8 +1,8 @@
-import {createElement} from '../render.js';
+import { createElement } from '../render.js';
 
 function createEventTemplate() {
   return (
-    `
+    /*html*/`
       <div class="event">
         <time class="event__date" datetime="2019-03-18">MAR 18</time>
         <div class="event__type">
@@ -43,6 +43,10 @@ function createEventTemplate() {
 }
 
 export default class EventView {
+  constructor({event}) {
+    this.event = event;
+  }
+
   getTemplate() {
     return createEventTemplate();
   }
