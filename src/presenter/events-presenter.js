@@ -6,7 +6,6 @@ import EventFormView from '../view/event-form-view.js';
 
 export default class EventsPresenter {
   eventsListComponent = new EventsListView();
-  eventFormComponent = new EventFormView();
 
   constructor({container, eventsModel}) {
     this.container = container;
@@ -19,10 +18,14 @@ export default class EventsPresenter {
     render(this.eventsListComponent, this.container);
 
     const eventListItemFormComponent = new EventsListItemView();
-    render(new EventFormView(), eventListItemFormComponent.getElement());
+    render(new EventFormView({
+      event: this.eventsData[5],
+      eventTypes: [...this.eventsModel.eventTypes],
+      allOffersForEventType: [...this.eventsModel.getAllOffersForEventType(this.eventsData[0].type)],
+    }), eventListItemFormComponent.getElement());
     render(eventListItemFormComponent, this.eventsListComponent.getElement());
 
-    for (let i = 0; i < this.eventsData.length; i++) {
+    for (let i = 1; i < this.eventsData.length; i++) {
       const eventListItemComponent = new EventsListItemView();
       render(new EventView({event: this.eventsData[i]}), eventListItemComponent.getElement());
       render(eventListItemComponent, this.eventsListComponent.getElement());

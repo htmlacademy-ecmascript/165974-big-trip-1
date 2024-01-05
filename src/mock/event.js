@@ -1089,10 +1089,10 @@ const mockDestinations = [
         src: 'https://20.ecmascript.pages.academy/static/destinations/11.jpg',
         description: 'Madrid embankment'
       },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/11.jpg',
-        description: 'Madrid central station'
-      },
+      // {
+      //   src: 'https://20.ecmascript.pages.academy/static/destinations/11.jpg',
+      //   description: 'Madrid central station'
+      // },
       {
         src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
         description: 'Madrid central station'
@@ -1308,8 +1308,50 @@ const mockOffers = [
   }
 ];
 
-function getRandomEvent() {
-  return getRandomArrayElement(mockEvents);
+function findDestinationById(id) {
+  return mockDestinations.find((item) => item.id === id);
 }
 
-export { getRandomEvent };
+function findOffers(type, idsArr) {
+  const offerObj = mockOffers.find((item) => item.type === type);
+
+  const offers = [];
+
+  if (offerObj) {
+    idsArr.forEach((id) => {
+      const offer = offerObj.offers.find((item) => item.id === id);
+
+      if (offer) {
+        offers.push(offer);
+      }
+    });
+  }
+
+  return offers;
+}
+
+function getRandomEvent() {
+  const randomEvent = getRandomArrayElement(mockEvents);
+  const destinationObj = findDestinationById(randomEvent.destination);
+  const offersArr = findOffers(randomEvent.type, randomEvent.offers);
+
+  const newRandomEvent = {
+    ...randomEvent,
+    destination: { ...destinationObj },
+    offers: [...offersArr],
+  };
+
+  return newRandomEvent;
+}
+
+function getEventTypes() {
+  const eventTypes = mockOffers.map((offer) => offer.type);
+  return eventTypes;
+}
+
+function getAllOffersForEventType(eventType) {
+  const offerObj = mockOffers.find((item) => item.type === eventType);
+  return offerObj.offers;
+}
+
+export { getRandomEvent, getEventTypes, getAllOffersForEventType };
