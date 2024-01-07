@@ -35,14 +35,15 @@ function createEventFormTypesTemplate(currentType, eventTypes) {
   );
 }
 
-function createEventFormOffersTemplate(checkedOffers, allOffersForEventType) {
-  const isChecked = (offer) => !!(checkedOffers.find((checkedOffer) => checkedOffer.id === offer.id));
+function createEventFormOffersTemplate(offers) {
+  const offersTemplate = offers.map((offer) => {
+    const tag = offer.title.toLowerCase().replace(/\s+/g, '-');
+    const randomId = crypto.randomUUID().substring(0, 5);
 
-  const offersTemplate = allOffersForEventType.map((offer) => {
     const html = /*html*/`
       <div class="event__offer-selector">
-        <input class="event__offer-checkbox  visually-hidden" id="event-offer-meal-1" type="checkbox" name="event-offer-meal" ${isChecked(offer) ? 'checked' : ''}>
-        <label class="event__offer-label" for="event-offer-meal-1">
+        <input class="event__offer-checkbox  visually-hidden" id="event-offer-${tag}-${randomId}" type="checkbox" name="event-offer-${tag}" ${offer.isChecked ? 'checked' : ''}>
+        <label class="event__offer-label" for="event-offer-${tag}-${randomId}">
           <span class="event__offer-title">${offer.title}</span>
           &plus;&euro;&nbsp;
           <span class="event__offer-price">${offer.price}</span>
@@ -54,7 +55,7 @@ function createEventFormOffersTemplate(checkedOffers, allOffersForEventType) {
   }).join('');
 
   return (
-    allOffersForEventType.length ?
+    offers.length ?
     /*html*/`
       <section class="event__section  event__section--offers">
         <h3 class="event__section-title  event__section-title--offers">Offers</h3>
@@ -93,7 +94,7 @@ function createEventFormDestinationTemplate(destination) {
   );
 }
 
-function createEventFormTemplate(event, eventTypes, allOffersForEventType) {
+function createEventFormTemplate(event, eventTypes) {
   const { type, dateFrom, dateTo, destination, basePrice, offers } = event;
 
   const dateFromFormatted = dateFrom ?
@@ -116,11 +117,7 @@ function createEventFormTemplate(event, eventTypes, allOffersForEventType) {
             </label>
             <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${destination ? destination.name : ''}" list="destination-list-1">
             <datalist id="destination-list-1">
-              <!--
-              <option value="Amsterdam"></option>
-              <option value="Geneva"></option>
-              <option value="Chamonix"></option>
-              -->
+              ${destination ? `<option value="${destination.name}"></option>` : ''}
             </datalist>
           </div>
 
@@ -150,7 +147,7 @@ function createEventFormTemplate(event, eventTypes, allOffersForEventType) {
           -->
         </header>
         <section class="event__details">
-          ${createEventFormOffersTemplate(offers, allOffersForEventType)}
+          ${createEventFormOffersTemplate(offers)}
 
           ${createEventFormDestinationTemplate(destination)}
         </section>
@@ -160,26 +157,13 @@ function createEventFormTemplate(event, eventTypes, allOffersForEventType) {
 }
 
 export default class EventFormView {
-  constructor({ event, eventTypes, allOffersForEventType }) {
-    this.eventTypes = [...eventTypes];
-
-    this.blankEvent = {
-      type: eventTypes[0],
-      dateFrom: null,
-      dateTo: null,
-      destination: null,
-      basePrice: 0,
-      isFavorite: false,
-      offers: []
-    };
-
-    this.event = event || this.blankEvent;
-
-    this.allOffersForEventType = [...allOffersForEventType];
+  constructor({ event, eventTypes }) {
+    this.event = event;
+    this.eventTypes = eventTypes;
   }
 
   getTemplate() {
-    return createEventFormTemplate(this.event, this.eventTypes, this.allOffersForEventType);
+    return createEventFormTemplate(this.event, this.eventTypes);
   }
 
   getElement() {

@@ -1,5 +1,3 @@
-import { getRandomArrayElement } from '../utils.js';
-
 const mockEvents = [
   {
     id: '3ed63930-6b24-43be-b62f-793583d321cc',
@@ -1308,50 +1306,4 @@ const mockOffers = [
   }
 ];
 
-function findDestinationById(id) {
-  return mockDestinations.find((item) => item.id === id);
-}
-
-function findOffers(type, idsArr) {
-  const offerObj = mockOffers.find((item) => item.type === type);
-
-  const offers = [];
-
-  if (offerObj) {
-    idsArr.forEach((id) => {
-      const offer = offerObj.offers.find((item) => item.id === id);
-
-      if (offer) {
-        offers.push(offer);
-      }
-    });
-  }
-
-  return offers;
-}
-
-function getRandomEvent() {
-  const randomEvent = getRandomArrayElement(mockEvents);
-  const destinationObj = findDestinationById(randomEvent.destination);
-  const offersArr = findOffers(randomEvent.type, randomEvent.offers);
-
-  const newRandomEvent = {
-    ...randomEvent,
-    destination: { ...destinationObj },
-    offers: [...offersArr],
-  };
-
-  return newRandomEvent;
-}
-
-function getEventTypes() {
-  const eventTypes = mockOffers.map((offer) => offer.type);
-  return eventTypes;
-}
-
-function getAllOffersForEventType(eventType) {
-  const offerObj = mockOffers.find((item) => item.type === eventType);
-  return offerObj.offers;
-}
-
-export { getRandomEvent, getEventTypes, getAllOffersForEventType };
+export { mockEvents, mockDestinations, mockOffers };

@@ -1,3 +1,5 @@
+const EVENT_COUNT = 4;
+
 const DATE_FORMATS = {
   one: 'YYYY-MM-DD',
   two: 'MMM D',
@@ -5,4 +7,4 @@ const DATE_FORMATS = {
   time: 'HH:mm'
 };
 
-export { DATE_FORMATS };
+export { EVENT_COUNT, DATE_FORMATS };

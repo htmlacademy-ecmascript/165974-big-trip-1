@@ -14,14 +14,24 @@ export default class EventsPresenter {
 
   init() {
     this.eventsData = [...this.eventsModel.getEvents()];
+    const eventTypes = [...this.eventsModel.getEventTypes()];
+
+    const blankEvent = {
+      type: eventTypes[0],
+      dateFrom: null,
+      dateTo: null,
+      destination: null,
+      basePrice: 0,
+      isFavorite: false,
+      offers: [...this.eventsModel.getOffers(eventTypes[0], [])],
+    };
 
     render(this.eventsListComponent, this.container);
 
     const eventListItemFormComponent = new EventsListItemView();
     render(new EventFormView({
-      event: this.eventsData[5],
-      eventTypes: [...this.eventsModel.eventTypes],
-      allOffersForEventType: [...this.eventsModel.getAllOffersForEventType(this.eventsData[0].type)],
+      event: this.eventsData[0] || blankEvent,
+      eventTypes,
     }), eventListItemFormComponent.getElement());
     render(eventListItemFormComponent, this.eventsListComponent.getElement());
 
