@@ -6,7 +6,7 @@ function createEventFormTypesTemplate(currentType, eventTypes) {
   const eventTypesListTemplate = eventTypes.map((eventType) => {
     const html = /*html*/`
       <div class="event__type-item">
-        <input id="event-type-${eventType}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${eventType}">
+        <input id="event-type-${eventType}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${eventType}" ${eventType === currentType ? 'checked' : ''}>
         <label class="event__type-label  event__type-label--${eventType}" for="event-type-${eventType}-1">${eventType}</label>
       </div>
     `;
