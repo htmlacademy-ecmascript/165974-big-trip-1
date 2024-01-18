@@ -1,19 +1,23 @@
 export default class EventsModel {
+  #service = null;
+  #events = null;
+  #eventTypes = null;
+
   constructor(service) {
-    this.service = service;
-    this.events = this.service.getEvents();
-    this.eventTypes = this.service.getEventTypes();
+    this.#service = service;
+    this.#events = this.#service.events;
+    this.#eventTypes = this.#service.eventTypes;
   }
 
-  getEvents() {
-    return this.events;
+  get events() {
+    return this.#events;
   }
 
-  getEventTypes() {
-    return this.eventTypes;
+  get eventTypes() {
+    return this.#eventTypes;
   }
 
   getOffers(type, idsArr) {
-    return this.service.findOffers(type, idsArr);
+    return this.#service.findOffers(type, idsArr);
   }
 }

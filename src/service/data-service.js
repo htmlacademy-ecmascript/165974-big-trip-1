@@ -3,22 +3,22 @@ import { EVENT_COUNT } from '../const.js';
 import { mockEvents, mockDestinations, mockOffers } from '../mock/mock-data.js';
 
 export default class DataService {
-  events = [];
-  destinations = [];
-  offers = [];
+  #events = [];
+  #destinations = [];
+  #offers = [];
 
   constructor() {
-    this.events = [...mockEvents];
-    this.destinations = [...mockDestinations];
-    this.offers = [...mockOffers];
+    this.#events = [...mockEvents];
+    this.#destinations = [...mockDestinations];
+    this.#offers = [...mockOffers];
   }
 
   findDestination(id) {
-    return this.destinations.find((item) => item.id === id);
+    return this.#destinations.find((item) => item.id === id);
   }
 
   findOffers(type, idsArr) {
-    const offerObj = this.offers.find((item) => item.type === type);
+    const offerObj = this.#offers.find((item) => item.type === type);
 
     const offers = offerObj.offers.map((item) => {
       const isChecked = idsArr.includes(item.id);
@@ -33,7 +33,7 @@ export default class DataService {
   }
 
   getRandomEvent() {
-    const randomEvent = getRandomArrayElement(this.events);
+    const randomEvent = getRandomArrayElement(this.#events);
     const destinationObj = this.findDestination(randomEvent.destination);
     const offersArr = this.findOffers(randomEvent.type, randomEvent.offers);
 
@@ -46,11 +46,11 @@ export default class DataService {
     return newRandomEvent;
   }
 
-  getEvents() {
+  get events() {
     return Array.from({ length: EVENT_COUNT }, this.getRandomEvent.bind(this));
   }
 
-  getEventTypes() {
-    return this.offers.map((offer) => offer.type);
+  get eventTypes() {
+    return this.#offers.map((offer) => offer.type);
   }
 }

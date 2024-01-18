@@ -5,16 +5,19 @@ import EventView from '../view/event-view.js';
 import EventFormView from '../view/event-form-view.js';
 
 export default class EventsPresenter {
-  eventsListComponent = new EventsListView();
+  #eventsListComponent = new EventsListView();
+  #container = null;
+  #eventsModel = null;
+  #eventsData = null;
 
   constructor({ container, eventsModel }) {
-    this.container = container;
-    this.eventsModel = eventsModel;
+    this.#container = container;
+    this.#eventsModel = eventsModel;
   }
 
   init() {
-    this.eventsData = [...this.eventsModel.getEvents()];
-    const eventTypes = [...this.eventsModel.getEventTypes()];
+    this.#eventsData = [...this.#eventsModel.events];
+    const eventTypes = [...this.#eventsModel.eventTypes];
 
     const blankEvent = {
       type: eventTypes[0],
@@ -23,22 +26,24 @@ export default class EventsPresenter {
       destination: null,
       basePrice: 0,
       isFavorite: false,
-      offers: [...this.eventsModel.getOffers(eventTypes[0], [])],
+      offers: [...this.#eventsModel.getOffers(eventTypes[0], [])],
     };
 
-    render(this.eventsListComponent, this.container);
+    render(this.#eventsListComponent, this.#container);
 
     const eventListItemFormComponent = new EventsListItemView();
+
     render(new EventFormView({
-      event: this.eventsData[0] || blankEvent,
+      event: this.#eventsData[0] || blankEvent,
       eventTypes,
     }), eventListItemFormComponent.element);
-    render(eventListItemFormComponent, this.eventsListComponent.element);
 
-    for (let i = 1; i < this.eventsData.length; i++) {
+    render(eventListItemFormComponent, this.#eventsListComponent.element);
+
+    for (let i = 1; i < this.#eventsData.length; i++) {
       const eventListItemComponent = new EventsListItemView();
-      render(new EventView({ event: this.eventsData[i] }), eventListItemComponent.element);
-      render(eventListItemComponent, this.eventsListComponent.element);
+      render(new EventView({ event: this.#eventsData[i] }), eventListItemComponent.element);
+      render(eventListItemComponent, this.#eventsListComponent.element);
     }
   }
 }
