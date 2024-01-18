@@ -1,4 +1,4 @@
-import {render} from '../render.js';
+import { render } from '../framework/render.js';
 import EventsListView from '../view/events-list-view.js';
 import EventsListItemView from '../view/events-list-item-view.js';
 import EventView from '../view/event-view.js';
@@ -7,7 +7,7 @@ import EventFormView from '../view/event-form-view.js';
 export default class EventsPresenter {
   eventsListComponent = new EventsListView();
 
-  constructor({container, eventsModel}) {
+  constructor({ container, eventsModel }) {
     this.container = container;
     this.eventsModel = eventsModel;
   }
@@ -32,13 +32,13 @@ export default class EventsPresenter {
     render(new EventFormView({
       event: this.eventsData[0] || blankEvent,
       eventTypes,
-    }), eventListItemFormComponent.getElement());
-    render(eventListItemFormComponent, this.eventsListComponent.getElement());
+    }), eventListItemFormComponent.element);
+    render(eventListItemFormComponent, this.eventsListComponent.element);
 
     for (let i = 1; i < this.eventsData.length; i++) {
       const eventListItemComponent = new EventsListItemView();
-      render(new EventView({event: this.eventsData[i]}), eventListItemComponent.getElement());
-      render(eventListItemComponent, this.eventsListComponent.getElement());
+      render(new EventView({ event: this.eventsData[i] }), eventListItemComponent.element);
+      render(eventListItemComponent, this.eventsListComponent.element);
     }
   }
 }

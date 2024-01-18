@@ -1,4 +1,4 @@
-import { createElement } from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 import { formatDate } from '../utils.js';
 import { DATE_FORMATS } from '../const.js';
 
@@ -156,25 +156,14 @@ function createEventFormTemplate(event, eventTypes) {
   );
 }
 
-export default class EventFormView {
+export default class EventFormView extends AbstractView {
   constructor({ event, eventTypes }) {
+    super();
     this.event = event;
     this.eventTypes = eventTypes;
   }
 
-  getTemplate() {
+  get template() {
     return createEventFormTemplate(this.event, this.eventTypes);
-  }
-
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
   }
 }
