@@ -1,4 +1,4 @@
-import { render } from '../framework/render.js';
+import { render, replace } from '../framework/render.js';
 import EventsListView from '../view/events-list-view.js';
 import EventsListItemView from '../view/events-list-item-view.js';
 import EventView from '../view/event-view.js';
@@ -17,6 +17,18 @@ export default class EventsPresenter {
 
   init() {
     this.#eventsData = [...this.#eventsModel.events];
+    this.#renderEventList();
+  }
+
+  #renderEventList() {
+    render(this.#eventsListComponent, this.#container);
+
+    for (let i = 1; i < this.#eventsData.length; i++) {
+      this.#renderEvent(this.#eventsData[i]);
+    }
+  }
+
+  #renderEvent(item) {
     const eventTypes = [...this.#eventsModel.eventTypes];
 
     const blankEvent = {
@@ -29,25 +41,37 @@ export default class EventsPresenter {
       offers: [...this.#eventsModel.getOffers(eventTypes[0], [])],
     };
 
-    render(this.#eventsListComponent, this.#container);
+    const escKeyDownHandler = (evt) => {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
+        replaceFormToEvent();
+      }
+    };
 
-    const eventListItemFormComponent = new EventsListItemView();
+    const eventListItemComponent = new EventsListItemView();
 
-    render(new EventFormView({
+    const eventComponent = new EventView({
+      event: item,
+      onClick: replaceEventToForm,
+    });
+
+    const eventFormComponent = new EventFormView({
       event: this.#eventsData[0] || blankEvent,
       eventTypes,
-    }), eventListItemFormComponent.element);
+      onSubmit: replaceFormToEvent,
+      onClick: replaceFormToEvent,
+    });
 
-    render(eventListItemFormComponent, this.#eventsListComponent.element);
-
-    for (let i = 1; i < this.#eventsData.length; i++) {
-      this.#renderEvent(this.#eventsData[i]);
+    function replaceEventToForm() {
+      replace(eventFormComponent, eventComponent);
+      document.addEventListener('keydown', escKeyDownHandler);
     }
-  }
 
-  #renderEvent(item) {
-    const eventListItemComponent = new EventsListItemView();
-    const eventComponent = new EventView({ event: item });
+    function replaceFormToEvent() {
+      replace(eventComponent, eventFormComponent);
+      document.removeEventListener('keydown', escKeyDownHandler);
+    }
+
     render(eventComponent, eventListItemComponent.element);
     render(eventListItemComponent, this.#eventsListComponent.element);
   }

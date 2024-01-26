@@ -141,10 +141,10 @@ function createEventFormTemplate(event, eventTypes) {
           <button class="event__reset-btn" type="reset">Cancel</button>
           <!--
             <button class="event__reset-btn" type="reset">Delete</button>
-            <button class="event__rollup-btn" type="button">
-              <span class="visually-hidden">Open event</span>
-            </button>
           -->
+          <button class="event__rollup-btn" type="button">
+            <span class="visually-hidden">Open event</span>
+          </button>
         </header>
         <section class="event__details">
           ${createEventFormOffersTemplate(offers)}
@@ -157,13 +157,45 @@ function createEventFormTemplate(event, eventTypes) {
 }
 
 export default class EventFormView extends AbstractView {
-  constructor({ event, eventTypes }) {
+  #handleSubmit = null;
+  #handleClick = null;
+
+  constructor({ event, eventTypes, onSubmit, onClick }) {
     super();
     this.event = event;
     this.eventTypes = eventTypes;
+
+    if (onSubmit) {
+      this.#handleSubmit = onSubmit;
+    }
+
+    if (onClick) {
+      this.#handleClick = onClick;
+    }
+
+    this.element.addEventListener('submit', this.#submitHandler);
+
+    const rollupBtnEl = this.element.querySelector('.event__rollup-btn');
+    rollupBtnEl.addEventListener('click', this.#clickHandler);
   }
 
   get template() {
     return createEventFormTemplate(this.event, this.eventTypes);
   }
+
+  #submitHandler = (evt) => {
+    evt.preventDefault();
+
+    if (this.#handleSubmit) {
+      this.#handleSubmit();
+    }
+  };
+
+  #clickHandler = (evt) => {
+    evt.preventDefault();
+
+    if (this.#handleClick) {
+      this.#handleClick();
+    }
+  };
 }

@@ -70,12 +70,29 @@ function createEventTemplate(event) {
 }
 
 export default class EventView extends AbstractView {
-  constructor({ event }) {
+  #handleClick = null;
+
+  constructor({ event, onClick }) {
     super();
     this.event = event;
+
+    if (onClick) {
+      this.#handleClick = onClick;
+    }
+
+    const rollupBtnEl = this.element.querySelector('.event__rollup-btn');
+    rollupBtnEl.addEventListener('click', this.#clickHandler);
   }
 
   get template() {
     return createEventTemplate(this.event);
   }
+
+  #clickHandler = (evt) => {
+    evt.preventDefault();
+
+    if (this.#handleClick) {
+      this.#handleClick();
+    }
+  };
 }
