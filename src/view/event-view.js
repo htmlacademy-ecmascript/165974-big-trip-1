@@ -1,4 +1,4 @@
-import { createElement } from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 import { formatDate, getDatesDiff } from '../utils.js';
 import { DATE_FORMATS } from '../const.js';
 
@@ -69,24 +69,30 @@ function createEventTemplate(event) {
   );
 }
 
-export default class EventView {
-  constructor({ event }) {
+export default class EventView extends AbstractView {
+  #handleClick = null;
+
+  constructor({ event, onClick }) {
+    super();
     this.event = event;
+
+    if (onClick) {
+      this.#handleClick = onClick;
+    }
+
+    const rollupBtnEl = this.element.querySelector('.event__rollup-btn');
+    rollupBtnEl.addEventListener('click', this.#clickHandler);
   }
 
-  getTemplate() {
+  get template() {
     return createEventTemplate(this.event);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  #clickHandler = (evt) => {
+    evt.preventDefault();
+
+    if (this.#handleClick) {
+      this.#handleClick();
     }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
-  }
+  };
 }

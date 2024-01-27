@@ -1,4 +1,4 @@
-import { createElement } from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 import { formatDate } from '../utils.js';
 import { DATE_FORMATS } from '../const.js';
 
@@ -141,10 +141,10 @@ function createEventFormTemplate(event, eventTypes) {
           <button class="event__reset-btn" type="reset">Cancel</button>
           <!--
             <button class="event__reset-btn" type="reset">Delete</button>
-            <button class="event__rollup-btn" type="button">
-              <span class="visually-hidden">Open event</span>
-            </button>
           -->
+          <button class="event__rollup-btn" type="button">
+            <span class="visually-hidden">Open event</span>
+          </button>
         </header>
         <section class="event__details">
           ${createEventFormOffersTemplate(offers)}
@@ -156,25 +156,46 @@ function createEventFormTemplate(event, eventTypes) {
   );
 }
 
-export default class EventFormView {
-  constructor({ event, eventTypes }) {
+export default class EventFormView extends AbstractView {
+  #handleSubmit = null;
+  #handleClick = null;
+
+  constructor({ event, eventTypes, onSubmit, onClick }) {
+    super();
     this.event = event;
     this.eventTypes = eventTypes;
+
+    if (onSubmit) {
+      this.#handleSubmit = onSubmit;
+    }
+
+    if (onClick) {
+      this.#handleClick = onClick;
+    }
+
+    this.element.addEventListener('submit', this.#submitHandler);
+
+    const rollupBtnEl = this.element.querySelector('.event__rollup-btn');
+    rollupBtnEl.addEventListener('click', this.#clickHandler);
   }
 
-  getTemplate() {
+  get template() {
     return createEventFormTemplate(this.event, this.eventTypes);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  #submitHandler = (evt) => {
+    evt.preventDefault();
+
+    if (this.#handleSubmit) {
+      this.#handleSubmit();
     }
+  };
 
-    return this.element;
-  }
+  #clickHandler = (evt) => {
+    evt.preventDefault();
 
-  removeElement() {
-    this.element = null;
-  }
+    if (this.#handleClick) {
+      this.#handleClick();
+    }
+  };
 }

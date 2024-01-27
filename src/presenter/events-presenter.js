@@ -1,20 +1,35 @@
-import {render} from '../render.js';
+import { render, replace } from '../framework/render.js';
 import EventsListView from '../view/events-list-view.js';
 import EventsListItemView from '../view/events-list-item-view.js';
 import EventView from '../view/event-view.js';
 import EventFormView from '../view/event-form-view.js';
 
 export default class EventsPresenter {
-  eventsListComponent = new EventsListView();
+  #eventsListComponent = new EventsListView();
+  #container = null;
+  #eventsModel = null;
+  #eventsData = null;
 
-  constructor({container, eventsModel}) {
-    this.container = container;
-    this.eventsModel = eventsModel;
+  constructor({ container, eventsModel }) {
+    this.#container = container;
+    this.#eventsModel = eventsModel;
   }
 
   init() {
-    this.eventsData = [...this.eventsModel.getEvents()];
-    const eventTypes = [...this.eventsModel.getEventTypes()];
+    this.#eventsData = [...this.#eventsModel.events];
+    this.#renderEventList();
+  }
+
+  #renderEventList() {
+    render(this.#eventsListComponent, this.#container);
+
+    for (let i = 1; i < this.#eventsData.length; i++) {
+      this.#renderEvent(this.#eventsData[i]);
+    }
+  }
+
+  #renderEvent(item) {
+    const eventTypes = [...this.#eventsModel.eventTypes];
 
     const blankEvent = {
       type: eventTypes[0],
@@ -23,22 +38,41 @@ export default class EventsPresenter {
       destination: null,
       basePrice: 0,
       isFavorite: false,
-      offers: [...this.eventsModel.getOffers(eventTypes[0], [])],
+      offers: [...this.#eventsModel.getOffers(eventTypes[0], [])],
     };
 
-    render(this.eventsListComponent, this.container);
+    const escKeyDownHandler = (evt) => {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
+        replaceFormToEvent();
+      }
+    };
 
-    const eventListItemFormComponent = new EventsListItemView();
-    render(new EventFormView({
-      event: this.eventsData[0] || blankEvent,
+    const eventListItemComponent = new EventsListItemView();
+
+    const eventComponent = new EventView({
+      event: item,
+      onClick: replaceEventToForm,
+    });
+
+    const eventFormComponent = new EventFormView({
+      event: this.#eventsData[0] || blankEvent,
       eventTypes,
-    }), eventListItemFormComponent.getElement());
-    render(eventListItemFormComponent, this.eventsListComponent.getElement());
+      onSubmit: replaceFormToEvent,
+      onClick: replaceFormToEvent,
+    });
 
-    for (let i = 1; i < this.eventsData.length; i++) {
-      const eventListItemComponent = new EventsListItemView();
-      render(new EventView({event: this.eventsData[i]}), eventListItemComponent.getElement());
-      render(eventListItemComponent, this.eventsListComponent.getElement());
+    function replaceEventToForm() {
+      replace(eventFormComponent, eventComponent);
+      document.addEventListener('keydown', escKeyDownHandler);
     }
+
+    function replaceFormToEvent() {
+      replace(eventComponent, eventFormComponent);
+      document.removeEventListener('keydown', escKeyDownHandler);
+    }
+
+    render(eventComponent, eventListItemComponent.element);
+    render(eventListItemComponent, this.#eventsListComponent.element);
   }
 }
