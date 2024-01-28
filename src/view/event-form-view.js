@@ -164,14 +164,8 @@ export default class EventFormView extends AbstractView {
     super();
     this.event = event;
     this.eventTypes = eventTypes;
-
-    if (onSubmit) {
-      this.#handleSubmit = onSubmit;
-    }
-
-    if (onClick) {
-      this.#handleClick = onClick;
-    }
+    this.#handleSubmit = onSubmit;
+    this.#handleClick = onClick;
 
     this.element.addEventListener('submit', this.#submitHandler);
 
@@ -185,17 +179,11 @@ export default class EventFormView extends AbstractView {
 
   #submitHandler = (evt) => {
     evt.preventDefault();
-
-    if (this.#handleSubmit) {
-      this.#handleSubmit();
-    }
+    this.#handleSubmit?.();
   };
 
   #clickHandler = (evt) => {
     evt.preventDefault();
-
-    if (this.#handleClick) {
-      this.#handleClick();
-    }
+    this.#handleClick?.();
   };
 }
