@@ -1,5 +1,5 @@
 import AbstractView from '../framework/view/abstract-view.js';
-import { formatDate, getDatesDiff } from '../utils.js';
+import { formatDate, getDatesDiff } from '../utils/date.js';
 import { DATE_FORMATS } from '../const.js';
 
 function createOffersTemplate(offers) {

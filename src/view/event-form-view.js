@@ -1,5 +1,5 @@
 import AbstractView from '../framework/view/abstract-view.js';
-import { formatDate } from '../utils.js';
+import { formatDate } from '../utils/date.js';
 import { DATE_FORMATS } from '../const.js';
 
 function createEventFormTypesTemplate(currentType, eventTypes) {

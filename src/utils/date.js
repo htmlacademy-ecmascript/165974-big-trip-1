@@ -1,9 +1,5 @@
 import dayjs from 'dayjs';
-import { DATE_FORMATS } from './const.js';
-
-function getRandomArrayElement(items) {
-  return items[Math.floor(Math.random() * items.length)];
-}
+import { DATE_FORMATS } from '../const.js';
 
 function formatDate(date, formatType = DATE_FORMATS.one) {
   return date && formatType ? dayjs(date).format(formatType) : '';
@@ -46,4 +42,4 @@ function getDatesDiff(date1, date2) {
   return strArr.reverse().join(' ');
 }
 
-export { getRandomArrayElement, formatDate, getDatesDiff };
+export { formatDate, getDatesDiff };
