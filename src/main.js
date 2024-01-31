@@ -6,6 +6,8 @@ import SortView from './view/sort-view.js';
 import EventsPresenter from './presenter/events-presenter.js';
 import EventsModel from './model/events-model.js';
 import DataService from './service/data-service.js';
+import { generateFilter } from './mock/filter-data.js';
+import { sortCriteria as criteria } from './mock/sort-data.js';
 
 const siteTripMainElement = document.querySelector('.trip-main');
 const siteTripControlsElement = document.querySelector('.trip-controls');
@@ -19,9 +21,13 @@ const eventsPresenter = new EventsPresenter({
   eventsModel,
 });
 
-render(new TripInfoView(), siteTripMainElement, RenderPosition.AFTERBEGIN);
+const filters = generateFilter(eventsModel.events);
+
+render(new TripInfoView({
+  events: eventsModel.events
+}), siteTripMainElement, RenderPosition.AFTERBEGIN);
 render(new ButtonNewEventView(), siteTripMainElement);
-render(new FilterView(), siteTripControlsElement);
-render(new SortView(), siteTripEventsElement);
+render(new FilterView({ filters }), siteTripControlsElement);
+render(new SortView({ criteria }), siteTripEventsElement);
 
 eventsPresenter.init();

@@ -29,7 +29,7 @@ export default class EventsPresenter {
       return;
     }
 
-    for (let i = 1; i < this.#eventsData.length; i++) {
+    for (let i = 0; i < this.#eventsData.length; i++) {
       this.#renderEvent(this.#eventsData[i]);
     }
   }
