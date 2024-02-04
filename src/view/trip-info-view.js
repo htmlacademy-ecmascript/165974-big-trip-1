@@ -18,11 +18,7 @@ function createTitleTemplate(events) {
   );
 }
 
-function calculateSum(events) {
-  return events.reduce((sum, event) => sum + event.basePrice, 0);
-}
-
-function createTripInfoTemplate(events) {
+function createDatesTemplate(events) {
   const monthFromFormatted = formatDate(events.at(0).dateFrom, DATE_FORMATS.four);
   const monthToFormatted = formatDate(events.at(-1).dateTo, DATE_FORMATS.four);
   const dayFromFormatted = formatDate(events.at(0).dateFrom, DATE_FORMATS.five);
@@ -32,13 +28,24 @@ function createTripInfoTemplate(events) {
     `${monthFromFormatted} ${dayFromFormatted}&nbsp;&mdash;&nbsp;${dayToFormatted}` :
     `${monthFromFormatted} ${dayFromFormatted}&nbsp;&mdash;&nbsp;${monthToFormatted} ${dayToFormatted}`;
 
+  return dateStr;
+}
+
+function calculateSum(events) {
+  return events.reduce(
+    (sum, event) => sum + event.basePrice + event.offers.reduce(
+      (offersSum, offer) => offersSum + offer.price, 0
+    ), 0);
+}
+
+function createTripInfoTemplate(events) {
   return (
     `
       <section class="trip-main__trip-info  trip-info">
         <div class="trip-info__main">
           ${createTitleTemplate(events)}
 
-          <p class="trip-info__dates">${dateStr}</p>
+          <p class="trip-info__dates">${createDatesTemplate(events)}</p>
         </div>
 
         <p class="trip-info__cost">
