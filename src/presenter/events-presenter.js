@@ -3,6 +3,7 @@ import EventsListView from '../view/events-list-view.js';
 import EventsListItemView from '../view/events-list-item-view.js';
 import EventView from '../view/event-view.js';
 import EventFormView from '../view/event-form-view.js';
+import EventsListEmptyView from '../view/events-list-empty-view.js';
 
 export default class EventsPresenter {
   #eventsListComponent = new EventsListView();
@@ -23,7 +24,12 @@ export default class EventsPresenter {
   #renderEventList() {
     render(this.#eventsListComponent, this.#container);
 
-    for (let i = 1; i < this.#eventsData.length; i++) {
+    if (!this.#eventsData.length) {
+      render(new EventsListEmptyView(), this.#eventsListComponent.element);
+      return;
+    }
+
+    for (let i = 0; i < this.#eventsData.length; i++) {
       this.#renderEvent(this.#eventsData[i]);
     }
   }

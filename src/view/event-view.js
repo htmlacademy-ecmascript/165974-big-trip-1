@@ -1,5 +1,5 @@
 import AbstractView from '../framework/view/abstract-view.js';
-import { formatDate, getDatesDiff } from '../utils.js';
+import { formatDate, getDatesDiff } from '../utils/date.js';
 import { DATE_FORMATS } from '../const.js';
 
 function createOffersTemplate(offers) {
@@ -75,10 +75,7 @@ export default class EventView extends AbstractView {
   constructor({ event, onClick }) {
     super();
     this.event = event;
-
-    if (onClick) {
-      this.#handleClick = onClick;
-    }
+    this.#handleClick = onClick;
 
     const rollupBtnEl = this.element.querySelector('.event__rollup-btn');
     rollupBtnEl.addEventListener('click', this.#clickHandler);
@@ -90,9 +87,6 @@ export default class EventView extends AbstractView {
 
   #clickHandler = (evt) => {
     evt.preventDefault();
-
-    if (this.#handleClick) {
-      this.#handleClick();
-    }
+    this.#handleClick?.();
   };
 }

@@ -1,9 +1,28 @@
 import dayjs from 'dayjs';
-import { DATE_FORMATS } from './const.js';
+import { DATE_FORMATS } from '../const.js';
 
-function getRandomArrayElement(items) {
-  return items[Math.floor(Math.random() * items.length)];
+function isFutureDate(dateFrom) {
+  const now = dayjs();
+  return now.isBefore(dayjs(dateFrom));
 }
+
+// console.log(isFutureDate('2024-01-29T10:32:22.905Z'));
+
+function isPresentDate(dateFrom, dateTo) {
+  const now = dayjs();
+  const isBeginningSameOrBeforeNow = dayjs(dateFrom).isBefore(now) || dayjs(dateFrom).isSame(now);
+  const isEndingSameOrAfterNow = now.isBefore(dayjs(dateTo)) || dayjs(dateTo).isSame(now);
+  return isBeginningSameOrBeforeNow && isEndingSameOrAfterNow;
+}
+
+// console.log(isPresentDate('2024-01-27T10:32:22.905Z', '2024-01-28T10:32:22.905Z'));
+
+function isPastDate(dateTo) {
+  const now = dayjs();
+  return dayjs(dateTo).isBefore(now);
+}
+
+// console.log(isPastDate('2024-01-28T10:32:22.905Z'));
 
 function formatDate(date, formatType = DATE_FORMATS.one) {
   return date && formatType ? dayjs(date).format(formatType) : '';
@@ -46,4 +65,4 @@ function getDatesDiff(date1, date2) {
   return strArr.reverse().join(' ');
 }
 
-export { getRandomArrayElement, formatDate, getDatesDiff };
+export { isFutureDate, isPresentDate, isPastDate, formatDate, getDatesDiff };

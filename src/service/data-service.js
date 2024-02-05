@@ -1,4 +1,4 @@
-import { getRandomArrayElement } from '../utils.js';
+import { getRandomArrayElement } from '../utils/common.js';
 import { EVENT_COUNT } from '../const.js';
 import { mockEvents, mockDestinations, mockOffers } from '../mock/mock-data.js';
 
