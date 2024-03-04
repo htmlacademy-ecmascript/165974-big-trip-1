@@ -1,1099 +1,371 @@
 const mockEvents = [
   {
-    id: '3ed63930-6b24-43be-b62f-793583d321cc',
-    type: 'drive',
-    dateFrom: '2024-01-27T10:32:22.905Z',
-    dateTo: '2024-01-28T07:27:34.678Z',
-    destination: '2524ed4e-6c8c-49ae-85ea-9bc8585b749a',
-    basePrice: 300,
+    id: '3fe6af1e-2bcb-4cfb-a008-0cd6fe33564f',
+    basePrice: 5894,
+    dateFrom: '2026-12-22T16:59:34.880Z',
+    dateTo: '2026-12-24T02:59:34.880Z',
+    destination: '3ac52b04-59f3-4990-8a73-a9a217e0b76e',
     isFavorite: false,
     offers: [
-      'b3feca34-6ed9-4f15-890d-004d26e75d9f',
-      '932d9b60-6cdf-4007-98d1-ea1e4486d505'
-    ]
+      'a080b50d-11b9-49e5-af1e-c82e791b7d55',
+      '99bd9ae7-9d3d-4583-90dd-8d93d0b3bff7',
+      '3de0b138-9cb4-48c9-aeb0-5b859a78f920',
+      '79bb1446-b2d6-450c-be10-f05c49d5ffea',
+      '5b633a6b-4836-40e0-b99a-ac378caa941f',
+      'f10f2f19-f1c4-4a74-9a86-dc57e5bd29b3'
+    ],
+    type: 'ship'
   },
   {
-    id: 'bb400be2-6389-48d4-ba13-80bdf590bee0',
-    type: 'check-in',
-    dateFrom: '2024-01-28T07:27:34.678Z',
-    dateTo: '2024-01-28T20:20:09.008Z',
-    destination: '476ecb22-a340-4aea-91af-03f86c6e5570',
-    basePrice: 500,
+    id: '75bbb089-cd10-4bb1-a627-a2eab62c5041',
+    basePrice: 2902,
+    dateFrom: '2026-12-24T02:59:34.880Z',
+    dateTo: '2026-12-24T22:59:34.880Z',
+    destination: '10bc1a51-a317-48f8-bebb-d3e14390a3ce',
+    isFavorite: false,
+    offers: [],
+    type: 'drive'
+  },
+  {
+    id: 'fd25aedc-6935-4c9a-b2a4-08edd6cb6240',
+    basePrice: 9764,
+    dateFrom: '2026-12-24T22:59:34.880Z',
+    dateTo: '2026-12-26T22:59:34.880Z',
+    destination: 'afb3e6bd-2761-4e67-80b6-fddcb38612c4',
     isFavorite: false,
     offers: [
-      '313620a7-7e01-49eb-8bcc-154352743e73',
-      '59ec0894-8185-4f11-8018-86824b1c5eb1',
-      'fd0dda03-206d-45e2-9b49-0fdbf4edb598',
-      '5e850bd8-2372-430d-b748-d1d6f33679d5'
-    ]
+      '66b0bedf-39c2-47c6-ab4b-7edb36f1023d'
+    ],
+    type: 'check-in'
   },
   {
-    id: '51705bb4-1508-4432-9d3b-8727cf614563',
-    type: 'restaurant',
-    dateFrom: '2024-01-28T20:20:09.008Z',
-    dateTo: '2024-01-29T04:10:32.740Z',
-    destination: '59d20e9c-ab64-4bdd-8dfb-5de0c402a059',
-    basePrice: 1100,
-    isFavorite: false,
-    offers: [
-      'b5eea080-6241-420f-8d9d-67a6efb2cc5c',
-      'd86deb2a-a434-4319-896c-5a7e59829faa'
-    ]
-  },
-  {
-    id: '49120ca8-cdfd-4cc7-8418-a79bb1571a2c',
-    type: 'sightseeing',
-    dateFrom: '2024-01-29T04:10:32.740Z',
-    dateTo: '2024-01-29T18:37:35.774Z',
-    destination: 'a47df85f-a5e8-45c4-85c4-c38010cb0c71',
-    basePrice: 1100,
-    isFavorite: true,
-    offers: []
-  },
-  {
-    id: '8fd27aa2-a5b2-4309-8338-020fbcbbdb37',
-    type: 'drive',
-    dateFrom: '2024-01-29T18:37:35.774Z',
-    dateTo: '2024-01-30T02:30:37.970Z',
-    destination: 'f4632236-497f-4472-af53-aaef07c26ede',
-    basePrice: 1100,
+    id: '1dd3c565-3eb7-420a-a558-02328dfe5558',
+    basePrice: 8324,
+    dateFrom: '2026-12-26T22:59:34.880Z',
+    dateTo: '2026-12-28T06:59:34.880Z',
+    destination: 'caf17151-2c2b-49e2-b23a-c81eee6b5d0c',
     isFavorite: true,
     offers: [
-      'b3feca34-6ed9-4f15-890d-004d26e75d9f',
-      '932d9b60-6cdf-4007-98d1-ea1e4486d505'
-    ]
+      '4ac7e525-6f17-4e1b-8759-c8d94f729f77',
+      'caf259e0-489a-4880-b47c-6dfc2239f697',
+      '39947249-bf57-4936-8acd-3a1225448253'
+    ],
+    type: 'train'
   },
   {
-    id: 'b15dbfba-5d17-46c6-8ada-251c38875d3f',
-    type: 'taxi',
-    dateFrom: '2024-01-30T02:30:37.970Z',
-    dateTo: '2024-01-30T14:59:17.874Z',
-    destination: '449bcd81-7e07-4be9-ba7c-ce4b55e24e49',
-    basePrice: 300,
-    isFavorite: false,
-    offers: [
-      '3aed8ddc-79ba-4251-9628-6d5a9ba8ce3c',
-      'ebdc5ad9-c321-4c11-af95-ac3848f39f7b',
-      'e436cdf3-6044-43b8-9acb-fffb1c9ccd9f'
-    ]
+    id: 'b9d10629-ceb0-4961-9b26-e8473b0c94ac',
+    basePrice: 205,
+    dateFrom: '2026-12-28T06:59:34.880Z',
+    dateTo: '2026-12-29T12:59:34.880Z',
+    destination: '10bc1a51-a317-48f8-bebb-d3e14390a3ce',
+    isFavorite: true,
+    offers: [],
+    type: 'restaurant'
   },
   {
-    id: '36f6263b-5168-4156-9afc-427fd17578fe',
-    type: 'sightseeing',
-    dateFrom: '2024-01-30T14:59:17.874Z',
-    dateTo: '2024-01-31T03:29:04.588Z',
-    destination: '8f865db7-5b51-4d6b-9e50-656c4f0bc4e1',
-    basePrice: 300,
-    isFavorite: false,
-    offers: []
-  },
-  {
-    id: '9fdd94b3-ac74-4f3f-afc5-56aa98a060e0',
-    type: 'restaurant',
-    dateFrom: '2024-01-31T03:29:04.588Z',
-    dateTo: '2024-01-31T16:32:17.190Z',
-    destination: 'af6d1169-a671-4454-be5c-dcdc29d1d81a',
-    basePrice: 700,
+    id: '9c5d4f0e-cc29-4132-9672-0f3b59c396f1',
+    basePrice: 9685,
+    dateFrom: '2026-12-29T12:59:34.880Z',
+    dateTo: '2026-12-30T01:59:34.880Z',
+    destination: 'caf17151-2c2b-49e2-b23a-c81eee6b5d0c',
     isFavorite: true,
     offers: [
-      'b5eea080-6241-420f-8d9d-67a6efb2cc5c',
-      'd86deb2a-a434-4319-896c-5a7e59829faa'
-    ]
+      '5b633a6b-4836-40e0-b99a-ac378caa941f',
+      'f10f2f19-f1c4-4a74-9a86-dc57e5bd29b3'
+    ],
+    type: 'ship'
   },
   {
-    id: 'd0347504-96a7-4ed1-ab27-fd31aca2876f',
-    type: 'drive',
-    dateFrom: '2024-01-31T16:32:17.190Z',
-    dateTo: '2024-02-04T14:10:02.543Z',
-    destination: '85687362-04be-467c-a77c-75810f760533',
-    basePrice: 1000,
+    id: 'b701cda9-e9af-4888-b57c-3bf83fb2a73c',
+    basePrice: 8509,
+    dateFrom: '2026-12-30T01:59:34.880Z',
+    dateTo: '2026-12-30T07:59:34.880Z',
+    destination: '10bc1a51-a317-48f8-bebb-d3e14390a3ce',
+    isFavorite: true,
+    offers: [],
+    type: 'drive'
+  },
+  {
+    id: '27c3dd9e-b641-43ee-9ac2-24835a59b120',
+    basePrice: 5734,
+    dateFrom: '2026-12-30T07:59:34.880Z',
+    dateTo: '2026-12-31T19:59:34.880Z',
+    destination: 'afb3e6bd-2761-4e67-80b6-fddcb38612c4',
     isFavorite: false,
     offers: [
-      'b3feca34-6ed9-4f15-890d-004d26e75d9f',
-      '932d9b60-6cdf-4007-98d1-ea1e4486d505'
-    ]
+      '97a1dff0-7ea7-4483-92a6-923caf42c374'
+    ],
+    type: 'bus'
   },
   {
-    id: '683e7c15-d805-4db4-bc24-23d24f01a1d6',
-    type: 'taxi',
-    dateFrom: '2024-02-04T14:10:02.543Z',
-    dateTo: '2024-02-05T04:45:44.251Z',
-    destination: '449bcd81-7e07-4be9-ba7c-ce4b55e24e49',
-    basePrice: 500,
+    id: '9736272d-8595-4e36-90ae-d06edf51ee12',
+    basePrice: 8591,
+    dateFrom: '2026-12-31T19:59:34.880Z',
+    dateTo: '2027-01-02T18:59:34.880Z',
+    destination: 'caf17151-2c2b-49e2-b23a-c81eee6b5d0c',
     isFavorite: false,
     offers: [
-      '0524ba2a-9e1d-4477-84c3-9929b32cbdc0',
-      'ebdc5ad9-c321-4c11-af95-ac3848f39f7b',
-      '98b145f6-6f92-4706-9f7b-9b8e9347e5c8',
-      'e436cdf3-6044-43b8-9acb-fffb1c9ccd9f'
-    ]
+      '39947249-bf57-4936-8acd-3a1225448253'
+    ],
+    type: 'train'
   },
   {
-    id: 'fe212987-6dd3-4732-884a-f96440a3220e',
-    type: 'sightseeing',
-    dateFrom: '2024-02-05T04:45:44.251Z',
-    dateTo: '2024-02-05T09:35:38.687Z',
-    destination: '85687362-04be-467c-a77c-75810f760533',
-    basePrice: 600,
-    isFavorite: false,
-    offers: []
-  },
-  {
-    id: 'a2efe10b-4075-4149-b516-fd55d71a3a7e',
-    type: 'check-in',
-    dateFrom: '2024-02-05T09:35:38.687Z',
-    dateTo: '2024-02-06T01:30:41.981Z',
-    destination: 'af6d1169-a671-4454-be5c-dcdc29d1d81a',
-    basePrice: 400,
+    id: 'f613f10c-91b5-48e8-b720-bbeb3de76f8d',
+    basePrice: 7508,
+    dateFrom: '2027-01-02T18:59:34.880Z',
+    dateTo: '2027-01-03T00:59:34.880Z',
+    destination: '10bc1a51-a317-48f8-bebb-d3e14390a3ce',
     isFavorite: false,
     offers: [
-      '313620a7-7e01-49eb-8bcc-154352743e73',
-      'fd0dda03-206d-45e2-9b49-0fdbf4edb598',
-      '5e850bd8-2372-430d-b748-d1d6f33679d5'
-    ]
+      'd86da2b9-3b26-4264-918e-e90f71a22ed7',
+      'bc68a804-f4ad-4fcd-a34c-c4bf628ce359',
+      '66b0bedf-39c2-47c6-ab4b-7edb36f1023d'
+    ],
+    type: 'check-in'
   },
   {
-    id: 'c4b3eeb8-aa2b-4c45-984c-dab21251ca60',
-    type: 'sightseeing',
-    dateFrom: '2024-02-06T01:30:41.981Z',
-    dateTo: '2024-02-06T23:15:33.237Z',
-    destination: '476ecb22-a340-4aea-91af-03f86c6e5570',
-    basePrice: 1000,
-    isFavorite: false,
-    offers: []
-  },
-  {
-    id: 'fff69959-4484-4951-85de-910ce7b37f14',
-    type: 'bus',
-    dateFrom: '2024-02-06T23:15:33.237Z',
-    dateTo: '2024-02-07T07:08:11.699Z',
-    destination: '485580d6-8d8b-4695-bf7d-d16dd3f89b80',
-    basePrice: 500,
+    id: 'cc2afbbd-006d-4cc8-b6e6-e4850711b044',
+    basePrice: 2352,
+    dateFrom: '2027-01-03T00:59:34.880Z',
+    dateTo: '2027-01-03T16:59:34.880Z',
+    destination: '3ac52b04-59f3-4990-8a73-a9a217e0b76e',
     isFavorite: true,
     offers: [
-      '6eb80fa3-6cf4-4469-b852-0e6b08274991',
-      '0eb34657-77f7-4a8b-bf26-6a92e4b5ec34',
-      '3cb35270-950d-4311-a6fe-41143b510536'
-    ]
+      '18fd7961-ab32-40e8-b744-5e8bf06c3e55',
+      '09fe2b6c-7bed-4c01-afd5-dc2b3faee2c1',
+      'dd5cea00-9b44-40e4-8205-52996c29a312',
+      'e2b5e314-1cd8-4925-989b-d03d272f2715'
+    ],
+    type: 'taxi'
   },
   {
-    id: '9bd34d2e-a7ab-466c-84bc-d80e493e9b92',
-    type: 'train',
-    dateFrom: '2024-02-07T07:08:11.699Z',
-    dateTo: '2024-02-07T14:18:59.262Z',
-    destination: '59d20e9c-ab64-4bdd-8dfb-5de0c402a059',
-    basePrice: 400,
-    isFavorite: false,
-    offers: [
-      '2c1a2d7f-b481-4586-a172-20dd1592351c',
-      '718ab729-dee4-438b-8827-39543f23fd3c',
-      '85bde352-e7c7-4562-af4f-df018dd282a8'
-    ]
-  },
-  {
-    id: '58411f67-ddf5-4983-9ade-47d41ae054ea',
-    type: 'taxi',
-    dateFrom: '2024-02-07T14:18:59.262Z',
-    dateTo: '2024-02-08T02:26:31.064Z',
-    destination: 'bb1e4018-65c6-4d60-82c4-54b322ad166f',
-    basePrice: 700,
+    id: '52a616f3-da7b-4513-93a5-be7afd241f11',
+    basePrice: 4565,
+    dateFrom: '2027-01-03T16:59:34.880Z',
+    dateTo: '2027-01-04T17:59:34.880Z',
+    destination: '4ac538ec-fc25-423b-a1f4-93ba609c1973',
     isFavorite: true,
     offers: [
-      '98b145f6-6f92-4706-9f7b-9b8e9347e5c8',
-      'e436cdf3-6044-43b8-9acb-fffb1c9ccd9f'
-    ]
+      'f484fb2c-698d-452f-b3ba-927c7cb4d296',
+      '4524d1c9-c50c-4b99-916c-63d1cae90a81'
+    ],
+    type: 'restaurant'
   },
   {
-    id: 'bb9526c8-97a2-477a-a0f9-f5b6b39507ad',
-    type: 'train',
-    dateFrom: '2024-02-08T02:26:31.064Z',
-    dateTo: '2024-02-08T00:16:06.652Z',
-    destination: 'f4632236-497f-4472-af53-aaef07c26ede',
-    basePrice: 300,
-    isFavorite: true,
-    offers: [
-      '2c1a2d7f-b481-4586-a172-20dd1592351c',
-      '718ab729-dee4-438b-8827-39543f23fd3c',
-      '85bde352-e7c7-4562-af4f-df018dd282a8'
-    ]
-  },
-  {
-    id: '527b686e-043b-49b8-b036-8ad82216803a',
-    type: 'flight',
-    dateFrom: '2024-02-08T00:16:06.652Z',
-    dateTo: '2024-02-08T21:16:28.874Z',
-    destination: '59d20e9c-ab64-4bdd-8dfb-5de0c402a059',
-    basePrice: 400,
-    isFavorite: true,
-    offers: [
-      '1f51cf5a-eb2c-4316-acfc-14b2fcc97bd5',
-      '2e55551b-c20b-453a-afa5-944e75ef3dc3',
-      '51b2988d-0671-48e4-8cd7-958041e7b942',
-      '57f24d44-e1cd-46a5-a442-cd7dea92aa23'
-    ]
-  },
-  {
-    id: '022edcd5-c6e1-4d9f-a341-a4a3f3f5e965',
-    type: 'drive',
-    dateFrom: '2024-02-08T21:16:28.874Z',
-    dateTo: '2024-02-09T02:10:54.766Z',
-    destination: '1807957a-e0ef-467c-873f-b9ac17a95af3',
-    basePrice: 1100,
+    id: '9ad5022d-fb6d-4dd6-a6ee-dc3673feade5',
+    basePrice: 2959,
+    dateFrom: '2027-01-04T17:59:34.880Z',
+    dateTo: '2027-01-06T09:59:34.880Z',
+    destination: '3ac52b04-59f3-4990-8a73-a9a217e0b76e',
     isFavorite: false,
     offers: [
-      'b3feca34-6ed9-4f15-890d-004d26e75d9f',
-      '932d9b60-6cdf-4007-98d1-ea1e4486d505'
-    ]
+      'ca25e1c1-0fda-4849-8c0f-2677c85adbf7',
+      '2ea76e51-c913-4dbb-8c4e-8e4bb6ccabc5',
+      '22c80725-7918-419d-aefb-3469d3c942cc',
+      'f2f462fb-6807-4da4-ba0c-0e2610506703'
+    ],
+    type: 'flight'
   },
   {
-    id: '77913cb7-7f58-43c0-9438-b22eef6fd898',
-    type: 'restaurant',
-    dateFrom: '2024-02-09T02:10:54.766Z',
-    dateTo: '2024-02-09T05:15:42.186Z',
-    destination: 'a47df85f-a5e8-45c4-85c4-c38010cb0c71',
-    basePrice: 900,
+    id: '699c22c0-7c64-4381-bc89-254ea2c20b8d',
+    basePrice: 4042,
+    dateFrom: '2027-01-06T09:59:34.880Z',
+    dateTo: '2027-01-07T13:59:34.880Z',
+    destination: 'caf17151-2c2b-49e2-b23a-c81eee6b5d0c',
+    isFavorite: false,
+    offers: [],
+    type: 'bus'
+  },
+  {
+    id: 'ae9fe729-8a26-4d33-a01f-0e1912f8567f',
+    basePrice: 4347,
+    dateFrom: '2027-01-07T13:59:34.880Z',
+    dateTo: '2027-01-08T01:59:34.880Z',
+    destination: '10bc1a51-a317-48f8-bebb-d3e14390a3ce',
+    isFavorite: false,
+    offers: [],
+    type: 'bus'
+  },
+  {
+    id: '981823c7-c8ae-40e6-8d3d-5b110747f8b3',
+    basePrice: 5968,
+    dateFrom: '2027-01-08T01:59:34.880Z',
+    dateTo: '2027-01-09T22:59:34.880Z',
+    destination: 'afb3e6bd-2761-4e67-80b6-fddcb38612c4',
     isFavorite: false,
     offers: [
-      'b5eea080-6241-420f-8d9d-67a6efb2cc5c',
-      'd86deb2a-a434-4319-896c-5a7e59829faa'
-    ]
+      '69cc466e-5b05-4f95-ad0f-ee767c88c88c',
+      '99b757da-6c43-4f33-9044-cb9100135b45',
+      'd86da2b9-3b26-4264-918e-e90f71a22ed7',
+      'bc68a804-f4ad-4fcd-a34c-c4bf628ce359',
+      '66b0bedf-39c2-47c6-ab4b-7edb36f1023d'
+    ],
+    type: 'check-in'
+  },
+  {
+    id: '8fe7bf66-1cc3-4edd-b9de-0cc13ea5e7c2',
+    basePrice: 737,
+    dateFrom: '2027-01-09T22:59:34.880Z',
+    dateTo: '2027-01-10T11:59:34.880Z',
+    destination: '4ac538ec-fc25-423b-a1f4-93ba609c1973',
+    isFavorite: false,
+    offers: [],
+    type: 'check-in'
+  },
+  {
+    id: '667cde56-5d70-44f0-addc-38ce0555879c',
+    basePrice: 8006,
+    dateFrom: '2027-01-10T11:59:34.880Z',
+    dateTo: '2027-01-11T23:59:34.880Z',
+    destination: '10bc1a51-a317-48f8-bebb-d3e14390a3ce',
+    isFavorite: true,
+    offers: [
+      'f484fb2c-698d-452f-b3ba-927c7cb4d296',
+      '4524d1c9-c50c-4b99-916c-63d1cae90a81'
+    ],
+    type: 'restaurant'
+  },
+  {
+    id: '099916ac-4f14-443f-b874-98476d3b8147',
+    basePrice: 2178,
+    dateFrom: '2027-01-11T23:59:34.880Z',
+    dateTo: '2027-01-12T15:59:34.880Z',
+    destination: 'caf17151-2c2b-49e2-b23a-c81eee6b5d0c',
+    isFavorite: true,
+    offers: [
+      '5784c2ef-3c83-4c04-ad8e-29d4215b2fae',
+      'eebef189-2e28-4d74-b3a7-9fb28e499d8d'
+    ],
+    type: 'drive'
+  },
+  {
+    id: '12b3f2a4-9c3e-4767-8e58-42303dff9075',
+    basePrice: 763,
+    dateFrom: '2027-01-12T15:59:34.880Z',
+    dateTo: '2027-01-13T17:59:34.880Z',
+    destination: '10bc1a51-a317-48f8-bebb-d3e14390a3ce',
+    isFavorite: false,
+    offers: [
+      'ca25e1c1-0fda-4849-8c0f-2677c85adbf7',
+      '2ea76e51-c913-4dbb-8c4e-8e4bb6ccabc5',
+      '22c80725-7918-419d-aefb-3469d3c942cc',
+      'f2f462fb-6807-4da4-ba0c-0e2610506703'
+    ],
+    type: 'flight'
+  },
+  {
+    id: '061ea383-3725-4d88-90a1-bead8b798260',
+    basePrice: 8801,
+    dateFrom: '2027-01-13T17:59:34.880Z',
+    dateTo: '2027-01-14T04:59:34.880Z',
+    destination: 'afb3e6bd-2761-4e67-80b6-fddcb38612c4',
+    isFavorite: true,
+    offers: [
+      '39947249-bf57-4936-8acd-3a1225448253'
+    ],
+    type: 'train'
+  },
+  {
+    id: '9a62b562-2c91-437c-9ea5-9db1fe4e990a',
+    basePrice: 2238,
+    dateFrom: '2027-01-14T04:59:34.880Z',
+    dateTo: '2027-01-15T12:59:34.880Z',
+    destination: '3ac52b04-59f3-4990-8a73-a9a217e0b76e',
+    isFavorite: true,
+    offers: [
+      '97a1dff0-7ea7-4483-92a6-923caf42c374'
+    ],
+    type: 'bus'
+  },
+  {
+    id: '206a93db-db39-4e43-9b89-488af1f61077',
+    basePrice: 3213,
+    dateFrom: '2027-01-15T12:59:34.880Z',
+    dateTo: '2027-01-16T21:59:34.880Z',
+    destination: 'afb3e6bd-2761-4e67-80b6-fddcb38612c4',
+    isFavorite: false,
+    offers: [
+      'f10f2f19-f1c4-4a74-9a86-dc57e5bd29b3'
+    ],
+    type: 'ship'
+  },
+  {
+    id: '6836a98e-b0e2-4584-b1c2-a4fef68ae710',
+    basePrice: 2579,
+    dateFrom: '2027-01-16T21:59:34.880Z',
+    dateTo: '2027-01-17T14:59:34.880Z',
+    destination: 'afb3e6bd-2761-4e67-80b6-fddcb38612c4',
+    isFavorite: false,
+    offers: [
+      '2ea76e51-c913-4dbb-8c4e-8e4bb6ccabc5',
+      '22c80725-7918-419d-aefb-3469d3c942cc',
+      'f2f462fb-6807-4da4-ba0c-0e2610506703'
+    ],
+    type: 'flight'
+  },
+  {
+    id: '4104b3c1-abb4-47af-bca4-eea917367b2a',
+    basePrice: 58,
+    dateFrom: '2027-01-17T14:59:34.880Z',
+    dateTo: '2027-01-18T19:59:34.880Z',
+    destination: '3ac52b04-59f3-4990-8a73-a9a217e0b76e',
+    isFavorite: true,
+    offers: [
+      '79bb1446-b2d6-450c-be10-f05c49d5ffea',
+      '5b633a6b-4836-40e0-b99a-ac378caa941f',
+      'f10f2f19-f1c4-4a74-9a86-dc57e5bd29b3'
+    ],
+    type: 'ship'
   }
 ];
 
 const mockDestinations = [
   {
-    id: '839989fd-f49b-4827-ad99-157cd6cdce6d',
-    name: 'Chamonix',
-    description: 'Chamonix, is a beautiful city, a true asian pearl, in a middle of Europe, for those who value comfort and coziness, famous for its crowded street markets with the best street food in Asia.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/4.jpg',
-        description: 'Chamonix park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/3.jpg',
-        description: 'Chamonix central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Chamonix central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/4.jpg',
-        description: 'Chamonix embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/6.jpg',
-        description: 'Chamonix parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Chamonix parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Chamonix embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/4.jpg',
-        description: 'Chamonix embankment'
-      }
-    ]
-  },
-  {
-    id: 'bffc223b-30db-493d-aed4-e7091b0dff2f',
-    name: 'Geneva',
-    description: 'Geneva, a true asian pearl, with crowded streets, with a beautiful old town, a perfect place to stay with a family, famous for its crowded street markets with the best street food in Asia.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/3.jpg',
-        description: 'Geneva biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/8.jpg',
-        description: 'Geneva kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/19.jpg',
-        description: 'Geneva parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/19.jpg',
-        description: 'Geneva zoo'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/6.jpg',
-        description: 'Geneva city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Geneva central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/9.jpg',
-        description: 'Geneva parliament building'
-      }
-    ]
-  },
-  {
-    id: '85687362-04be-467c-a77c-75810f760533',
+    id: '3ac52b04-59f3-4990-8a73-a9a217e0b76e',
+    description: 'Amsterdam - with an embankment of a mighty river as a centre of attraction',
     name: 'Amsterdam',
-    description: 'Amsterdam, in a middle of Europe.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/8.jpg',
-        description: 'Amsterdam central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Amsterdam central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/10.jpg',
-        description: 'Amsterdam park'
-      }
-    ]
+    pictures: []
   },
   {
-    id: 'e4d03396-702f-44c8-988d-342736b43f5d',
-    name: 'Helsinki',
-    description: 'Helsinki, is a beautiful city, with a beautiful old town, for those who value comfort and coziness, full of of cozy canteens where you can try the best coffee in the Middle East.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/12.jpg',
-        description: 'Helsinki embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/13.jpg',
-        description: 'Helsinki parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/2.jpg',
-        description: 'Helsinki park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Helsinki embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/14.jpg',
-        description: 'Helsinki parliament building'
-      }
-    ]
-  },
-  {
-    id: 'a47df85f-a5e8-45c4-85c4-c38010cb0c71',
-    name: 'Oslo',
-    description: 'Oslo, is a beautiful city.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/19.jpg',
-        description: 'Oslo biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/16.jpg',
-        description: 'Oslo biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/1.jpg',
-        description: 'Oslo street market'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Oslo parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/13.jpg',
-        description: 'Oslo city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/8.jpg',
-        description: 'Oslo parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/16.jpg',
-        description: 'Oslo zoo'
-      }
-    ]
-  },
-  {
-    id: 'dc60db56-40c0-4dc3-bf39-c17eeeb0bfff',
+    id: 'caf17151-2c2b-49e2-b23a-c81eee6b5d0c',
+    description: 'Kopenhagen - with crowded streets',
     name: 'Kopenhagen',
-    description: 'Kopenhagen, a true asian pearl, famous for its crowded street markets with the best street food in Asia.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/12.jpg',
-        description: 'Kopenhagen central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/2.jpg',
-        description: 'Kopenhagen city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/15.jpg',
-        description: 'Kopenhagen zoo'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Kopenhagen park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/7.jpg',
-        description: 'Kopenhagen embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Kopenhagen embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/15.jpg',
-        description: 'Kopenhagen parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/14.jpg',
-        description: 'Kopenhagen embankment'
-      }
-    ]
+    pictures: []
   },
   {
-    id: 'd88661d6-9972-4d1a-be3a-209583edd49b',
-    name: 'Den Haag',
-    description: 'Den Haag, with a beautiful old town, middle-eastern paradise, for those who value comfort and coziness.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/12.jpg',
-        description: 'Den Haag embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/13.jpg',
-        description: 'Den Haag park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/12.jpg',
-        description: 'Den Haag park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/10.jpg',
-        description: 'Den Haag kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/14.jpg',
-        description: 'Den Haag parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/4.jpg',
-        description: 'Den Haag street market'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Den Haag embankment'
-      }
-    ]
-  },
-  {
-    id: 'f52229a1-b019-4b50-a32d-c4f65c5b255b',
-    name: 'Rotterdam',
-    description: 'Rotterdam, a true asian pearl, with crowded streets, with an embankment of a mighty river as a centre of attraction, a perfect place to stay with a family.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/3.jpg',
-        description: 'Rotterdam parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/6.jpg',
-        description: 'Rotterdam park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/17.jpg',
-        description: 'Rotterdam park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/15.jpg',
-        description: 'Rotterdam biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/2.jpg',
-        description: 'Rotterdam kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/7.jpg',
-        description: 'Rotterdam parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/8.jpg',
-        description: 'Rotterdam parliament building'
-      }
-    ]
-  },
-  {
-    id: '8f865db7-5b51-4d6b-9e50-656c4f0bc4e1',
-    name: 'Saint Petersburg',
-    description: 'Saint Petersburg, with a beautiful old town, middle-eastern paradise, for those who value comfort and coziness, a perfect place to stay with a family.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/9.jpg',
-        description: 'Saint Petersburg biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/2.jpg',
-        description: 'Saint Petersburg city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/3.jpg',
-        description: 'Saint Petersburg park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/13.jpg',
-        description: 'Saint Petersburg zoo'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/17.jpg',
-        description: 'Saint Petersburg kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/1.jpg',
-        description: 'Saint Petersburg street market'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/1.jpg',
-        description: 'Saint Petersburg central station'
-      }
-    ]
-  },
-  {
-    id: '2524ed4e-6c8c-49ae-85ea-9bc8585b749a',
-    name: 'Moscow',
-    description: 'Moscow, is a beautiful city, a true asian pearl, middle-eastern paradise, a perfect place to stay with a family, famous for its crowded street markets with the best street food in Asia.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/9.jpg',
-        description: 'Moscow biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/7.jpg',
-        description: 'Moscow street market'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Moscow biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/17.jpg',
-        description: 'Moscow park'
-      }
-    ]
-  },
-  {
-    id: 'aeb2ae5f-212d-4953-8b8a-1c64f984c10b',
-    name: 'Sochi',
-    description: 'Sochi, middle-eastern paradise.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/2.jpg',
-        description: 'Sochi zoo'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/11.jpg',
-        description: 'Sochi city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Sochi parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/10.jpg',
-        description: 'Sochi city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/7.jpg',
-        description: 'Sochi central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/15.jpg',
-        description: 'Sochi kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Sochi central station'
-      }
-    ]
-  },
-  {
-    id: 'd127ac39-27be-4f30-a4a0-010f4b6d3d3c',
-    name: 'Tokio',
-    description: 'Tokio, a true asian pearl, famous for its crowded street markets with the best street food in Asia.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/4.jpg',
-        description: 'Tokio embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/15.jpg',
-        description: 'Tokio central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/2.jpg',
-        description: 'Tokio city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/17.jpg',
-        description: 'Tokio city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/2.jpg',
-        description: 'Tokio kindergarten'
-      }
-    ]
-  },
-  {
-    id: '485580d6-8d8b-4695-bf7d-d16dd3f89b80',
-    name: 'Kioto',
-    description: 'Kioto, is a beautiful city, for those who value comfort and coziness, a perfect place to stay with a family.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/12.jpg',
-        description: 'Kioto parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/3.jpg',
-        description: 'Kioto zoo'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Kioto kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/9.jpg',
-        description: 'Kioto biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/9.jpg',
-        description: 'Kioto city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/15.jpg',
-        description: 'Kioto zoo'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/8.jpg',
-        description: 'Kioto embankment'
-      }
-    ]
-  },
-  {
-    id: 'd7a6a611-0bc0-49a5-839f-e04adc742928',
-    name: 'Nagasaki',
-    description: 'Nagasaki, with crowded streets, with an embankment of a mighty river as a centre of attraction.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/1.jpg',
-        description: 'Nagasaki city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/14.jpg',
-        description: 'Nagasaki city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/15.jpg',
-        description: 'Nagasaki kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/4.jpg',
-        description: 'Nagasaki kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/16.jpg',
-        description: 'Nagasaki city centre'
-      }
-    ]
-  },
-  {
-    id: '59d20e9c-ab64-4bdd-8dfb-5de0c402a059',
-    name: 'Hiroshima',
-    description: 'Hiroshima, with crowded streets, with a beautiful old town, middle-eastern paradise, full of of cozy canteens where you can try the best coffee in the Middle East.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Hiroshima embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/14.jpg',
-        description: 'Hiroshima city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/8.jpg',
-        description: 'Hiroshima parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Hiroshima city centre'
-      }
-    ]
-  },
-  {
-    id: '449bcd81-7e07-4be9-ba7c-ce4b55e24e49',
-    name: 'Berlin',
-    description: 'Berlin, a true asian pearl, with crowded streets, in a middle of Europe, middle-eastern paradise, with an embankment of a mighty river as a centre of attraction, full of of cozy canteens where you can try the best coffee in the Middle East.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/15.jpg',
-        description: 'Berlin central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Berlin parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/11.jpg',
-        description: 'Berlin park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/1.jpg',
-        description: 'Berlin parliament building'
-      }
-    ]
-  },
-  {
-    id: '910ecfc8-0810-4519-8f74-6cdd2bbee1a1',
-    name: 'Munich',
-    description: 'Munich, in a middle of Europe, for those who value comfort and coziness.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/17.jpg',
-        description: 'Munich city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/8.jpg',
-        description: 'Munich park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/13.jpg',
-        description: 'Munich kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Munich parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/8.jpg',
-        description: 'Munich embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/8.jpg',
-        description: 'Munich central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/1.jpg',
-        description: 'Munich embankment'
-      }
-    ]
-  },
-  {
-    id: '463e9ec8-b77b-40d2-b6d2-e59642ea69b7',
-    name: 'Frankfurt',
-    description: 'Frankfurt, a true asian pearl, middle-eastern paradise, full of of cozy canteens where you can try the best coffee in the Middle East.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/14.jpg',
-        description: 'Frankfurt parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/2.jpg',
-        description: 'Frankfurt city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/14.jpg',
-        description: 'Frankfurt zoo'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/3.jpg',
-        description: 'Frankfurt city centre'
-      }
-    ]
-  },
-  {
-    id: 'af6d1169-a671-4454-be5c-dcdc29d1d81a',
-    name: 'Vien',
-    description: 'Vien, is a beautiful city.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/2.jpg',
-        description: 'Vien street market'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/7.jpg',
-        description: 'Vien city centre'
-      }
-    ]
-  },
-  {
-    id: 'd1544164-6560-4bf7-8f6e-ff21a64194e0',
+    id: 'afb3e6bd-2761-4e67-80b6-fddcb38612c4',
+    description: 'Rome - full of of cozy canteens where you can try the best coffee in the Middle East',
     name: 'Rome',
-    description: 'Rome, with an embankment of a mighty river as a centre of attraction, full of of cozy canteens where you can try the best coffee in the Middle East, a perfect place to stay with a family.',
     pictures: [
       {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/11.jpg',
-        description: 'Rome embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/2.jpg',
-        description: 'Rome park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/15.jpg',
-        description: 'Rome city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/3.jpg',
-        description: 'Rome embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Rome central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/19.jpg',
-        description: 'Rome park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/17.jpg',
-        description: 'Rome street market'
+        src: 'https://20.objects.htmlacademy.pro/static/destinations/17.jpg',
+        description: 'Rome for those who value comfort and coziness'
       }
     ]
   },
   {
-    id: '3bd5d119-fd29-4c68-a314-a36f48306938',
-    name: 'Naples',
-    description: 'Naples, is a beautiful city.',
+    id: '4ac538ec-fc25-423b-a1f4-93ba609c1973',
+    description: 'Chamonix - in a middle of Europe',
+    name: 'Chamonix',
     pictures: [
       {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Naples street market'
+        src: 'https://20.objects.htmlacademy.pro/static/destinations/14.jpg',
+        description: 'Chamonix middle-eastern paradise'
       },
       {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/16.jpg',
-        description: 'Naples street market'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/9.jpg',
-        description: 'Naples kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/14.jpg',
-        description: 'Naples street market'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/14.jpg',
-        description: 'Naples street market'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/11.jpg',
-        description: 'Naples street market'
+        src: 'https://20.objects.htmlacademy.pro/static/destinations/11.jpg',
+        description: 'Chamonix a true asian pearl'
       }
     ]
   },
   {
-    id: 'f4593f91-2660-4204-9d6c-fce85baa0cad',
+    id: '10bc1a51-a317-48f8-bebb-d3e14390a3ce',
+    description: 'Venice - for those who value comfort and coziness',
     name: 'Venice',
-    description: 'Venice, with crowded streets, middle-eastern paradise, famous for its crowded street markets with the best street food in Asia.',
     pictures: [
       {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/13.jpg',
-        description: 'Venice park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/9.jpg',
-        description: 'Venice parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/8.jpg',
-        description: 'Venice biggest supermarket'
-      }
-    ]
-  },
-  {
-    id: '1807957a-e0ef-467c-873f-b9ac17a95af3',
-    name: 'Milan',
-    description: 'Milan, in a middle of Europe, with a beautiful old town, for those who value comfort and coziness, a perfect place to stay with a family.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/13.jpg',
-        description: 'Milan biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/19.jpg',
-        description: 'Milan kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/17.jpg',
-        description: 'Milan park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/10.jpg',
-        description: 'Milan street market'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/7.jpg',
-        description: 'Milan embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/13.jpg',
-        description: 'Milan kindergarten'
-      }
-    ]
-  },
-  {
-    id: '680224f9-a4ae-40a5-87c3-036c25ae97a7',
-    name: 'Monaco',
-    description: 'Monaco, for those who value comfort and coziness.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/13.jpg',
-        description: 'Monaco city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/16.jpg',
-        description: 'Monaco zoo'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/1.jpg',
-        description: 'Monaco park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/4.jpg',
-        description: 'Monaco street market'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/1.jpg',
-        description: 'Monaco biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/3.jpg',
-        description: 'Monaco city centre'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/3.jpg',
-        description: 'Monaco biggest supermarket'
-      }
-    ]
-  },
-  {
-    id: 'f4632236-497f-4472-af53-aaef07c26ede',
-    name: 'Paris',
-    description: 'Paris, middle-eastern paradise, with an embankment of a mighty river as a centre of attraction.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/6.jpg',
-        description: 'Paris central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Paris parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/5.jpg',
-        description: 'Paris biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/16.jpg',
-        description: 'Paris zoo'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/14.jpg',
-        description: 'Paris parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/10.jpg',
-        description: 'Paris park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Paris biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/1.jpg',
-        description: 'Paris embankment'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Paris zoo'
-      }
-    ]
-  },
-  {
-    id: '66ea0601-0940-47c6-8c79-5811b4062837',
-    name: 'Barcelona',
-    description: 'Barcelona, in a middle of Europe, middle-eastern paradise, with an embankment of a mighty river as a centre of attraction.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/1.jpg',
-        description: 'Barcelona biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Barcelona kindergarten'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/15.jpg',
-        description: 'Barcelona central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/10.jpg',
-        description: 'Barcelona biggest supermarket'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/4.jpg',
-        description: 'Barcelona parliament building'
-      }
-    ]
-  },
-  {
-    id: 'bb1e4018-65c6-4d60-82c4-54b322ad166f',
-    name: 'Valencia',
-    description: 'Valencia, with crowded streets.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Valencia parliament building'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/1.jpg',
-        description: 'Valencia park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/10.jpg',
-        description: 'Valencia central station'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/8.jpg',
-        description: 'Valencia park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/7.jpg',
-        description: 'Valencia park'
-      },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/13.jpg',
-        description: 'Valencia kindergarten'
-      }
-    ]
-  },
-  {
-    id: '476ecb22-a340-4aea-91af-03f86c6e5570',
-    name: 'Madrid',
-    description: 'Madrid, is a beautiful city, a true asian pearl, with a beautiful old town, middle-eastern paradise, for those who value comfort and coziness.',
-    pictures: [
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/11.jpg',
-        description: 'Madrid embankment'
-      },
-      // {
-      //   src: 'https://20.ecmascript.pages.academy/static/destinations/11.jpg',
-      //   description: 'Madrid central station'
-      // },
-      {
-        src: 'https://20.ecmascript.pages.academy/static/destinations/18.jpg',
-        description: 'Madrid central station'
+        src: 'https://20.objects.htmlacademy.pro/static/destinations/6.jpg',
+        description: 'Venice middle-eastern paradise'
       }
     ]
   }
@@ -1104,29 +376,29 @@ const mockOffers = [
     type: 'taxi',
     offers: [
       {
-        id: '0524ba2a-9e1d-4477-84c3-9929b32cbdc0',
+        id: '623646ff-2638-400e-9b2e-5f50c50e8524',
         title: 'Upgrade to a business class',
-        price: 190
+        price: 53
       },
       {
-        id: '3aed8ddc-79ba-4251-9628-6d5a9ba8ce3c',
+        id: '18fd7961-ab32-40e8-b744-5e8bf06c3e55',
         title: 'Choose the radio station',
-        price: 30
+        price: 171
       },
       {
-        id: 'ebdc5ad9-c321-4c11-af95-ac3848f39f7b',
+        id: '09fe2b6c-7bed-4c01-afd5-dc2b3faee2c1',
         title: 'Choose temperature',
-        price: 170
+        price: 84
       },
       {
-        id: '98b145f6-6f92-4706-9f7b-9b8e9347e5c8',
+        id: 'dd5cea00-9b44-40e4-8205-52996c29a312',
         title: 'Drive quickly, I\'m in a hurry',
-        price: 100
+        price: 53
       },
       {
-        id: 'e436cdf3-6044-43b8-9acb-fffb1c9ccd9f',
+        id: 'e2b5e314-1cd8-4925-989b-d03d272f2715',
         title: 'Drive slowly',
-        price: 110
+        price: 60
       }
     ]
   },
@@ -1134,19 +406,19 @@ const mockOffers = [
     type: 'bus',
     offers: [
       {
-        id: '6eb80fa3-6cf4-4469-b852-0e6b08274991',
+        id: '9621886c-1cbd-4633-b481-46ed93117d0f',
         title: 'Infotainment system',
-        price: 50
+        price: 31
       },
       {
-        id: '0eb34657-77f7-4a8b-bf26-6a92e4b5ec34',
+        id: 'eb1e4a96-62a2-4832-8e01-0c912718632a',
         title: 'Order meal',
-        price: 100
+        price: 53
       },
       {
-        id: '3cb35270-950d-4311-a6fe-41143b510536',
+        id: '97a1dff0-7ea7-4483-92a6-923caf42c374',
         title: 'Choose seats',
-        price: 190
+        price: 100
       }
     ]
   },
@@ -1154,19 +426,19 @@ const mockOffers = [
     type: 'train',
     offers: [
       {
-        id: '2c1a2d7f-b481-4586-a172-20dd1592351c',
+        id: '4ac7e525-6f17-4e1b-8759-c8d94f729f77',
         title: 'Book a taxi at the arrival point',
-        price: 110
+        price: 76
       },
       {
-        id: '718ab729-dee4-438b-8827-39543f23fd3c',
+        id: 'caf259e0-489a-4880-b47c-6dfc2239f697',
         title: 'Order a breakfast',
-        price: 80
+        price: 108
       },
       {
-        id: '85bde352-e7c7-4562-af4f-df018dd282a8',
+        id: '39947249-bf57-4936-8acd-3a1225448253',
         title: 'Wake up at a certain time',
-        price: 140
+        price: 179
       }
     ]
   },
@@ -1174,34 +446,34 @@ const mockOffers = [
     type: 'flight',
     offers: [
       {
-        id: '1f51cf5a-eb2c-4316-acfc-14b2fcc97bd5',
+        id: '93a26061-8f0b-4d57-b928-835580a95a30',
         title: 'Choose meal',
-        price: 120
+        price: 173
       },
       {
-        id: '2e55551b-c20b-453a-afa5-944e75ef3dc3',
+        id: '233e61f2-8984-42f2-913b-7868531ab2ad',
         title: 'Choose seats',
-        price: 90
+        price: 75
       },
       {
-        id: '6ffead53-d953-48ef-b74d-cc14a359d407',
+        id: 'ca25e1c1-0fda-4849-8c0f-2677c85adbf7',
         title: 'Upgrade to comfort class',
-        price: 120
+        price: 82
       },
       {
-        id: '51b2988d-0671-48e4-8cd7-958041e7b942',
+        id: '2ea76e51-c913-4dbb-8c4e-8e4bb6ccabc5',
         title: 'Upgrade to business class',
-        price: 120
+        price: 74
       },
       {
-        id: '18f241d3-847f-4bfd-b977-a6d97e63d7fb',
+        id: '22c80725-7918-419d-aefb-3469d3c942cc',
         title: 'Add luggage',
-        price: 170
+        price: 187
       },
       {
-        id: '57f24d44-e1cd-46a5-a442-cd7dea92aa23',
+        id: 'f2f462fb-6807-4da4-ba0c-0e2610506703',
         title: 'Business lounge',
-        price: 160
+        price: 151
       }
     ]
   },
@@ -1209,29 +481,29 @@ const mockOffers = [
     type: 'check-in',
     offers: [
       {
-        id: '313620a7-7e01-49eb-8bcc-154352743e73',
+        id: '69cc466e-5b05-4f95-ad0f-ee767c88c88c',
         title: 'Choose the time of check-in',
-        price: 70
+        price: 102
       },
       {
-        id: '59ec0894-8185-4f11-8018-86824b1c5eb1',
+        id: '99b757da-6c43-4f33-9044-cb9100135b45',
         title: 'Choose the time of check-out',
-        price: 190
+        price: 146
       },
       {
-        id: 'fd0dda03-206d-45e2-9b49-0fdbf4edb598',
+        id: 'd86da2b9-3b26-4264-918e-e90f71a22ed7',
         title: 'Add breakfast',
-        price: 110
+        price: 134
       },
       {
-        id: '308ea015-f936-41af-b8e0-4db298b417c0',
+        id: 'bc68a804-f4ad-4fcd-a34c-c4bf628ce359',
         title: 'Laundry',
-        price: 140
+        price: 82
       },
       {
-        id: '5e850bd8-2372-430d-b748-d1d6f33679d5',
+        id: '66b0bedf-39c2-47c6-ab4b-7edb36f1023d',
         title: 'Order a meal from the restaurant',
-        price: 30
+        price: 54
       }
     ]
   },
@@ -1243,34 +515,34 @@ const mockOffers = [
     type: 'ship',
     offers: [
       {
-        id: 'cfb1b978-ddff-4867-99bd-041726d10e25',
+        id: 'a080b50d-11b9-49e5-af1e-c82e791b7d55',
         title: 'Choose meal',
-        price: 130
+        price: 37
       },
       {
-        id: 'a15045a9-286f-4cac-9314-3021fab7b520',
+        id: '99bd9ae7-9d3d-4583-90dd-8d93d0b3bff7',
         title: 'Choose seats',
+        price: 126
+      },
+      {
+        id: '3de0b138-9cb4-48c9-aeb0-5b859a78f920',
+        title: 'Upgrade to comfort class',
+        price: 96
+      },
+      {
+        id: '79bb1446-b2d6-450c-be10-f05c49d5ffea',
+        title: 'Upgrade to business class',
         price: 160
       },
       {
-        id: 'ab7fbf73-dbbb-458b-94c4-c911efd5ead0',
-        title: 'Upgrade to comfort class',
-        price: 170
-      },
-      {
-        id: '9ad3fa8a-bf9f-4626-8139-0c541d8b3114',
-        title: 'Upgrade to business class',
-        price: 150
-      },
-      {
-        id: 'bc79b86a-5783-440d-a925-951b7126a6ab',
+        id: '5b633a6b-4836-40e0-b99a-ac378caa941f',
         title: 'Add luggage',
-        price: 100
+        price: 127
       },
       {
-        id: 'e72ab76e-53df-48f6-a667-aca3d58b9036',
+        id: 'f10f2f19-f1c4-4a74-9a86-dc57e5bd29b3',
         title: 'Business lounge',
-        price: 40
+        price: 60
       }
     ]
   },
@@ -1278,14 +550,14 @@ const mockOffers = [
     type: 'drive',
     offers: [
       {
-        id: 'b3feca34-6ed9-4f15-890d-004d26e75d9f',
+        id: '5784c2ef-3c83-4c04-ad8e-29d4215b2fae',
         title: 'With automatic transmission',
-        price: 110
+        price: 77
       },
       {
-        id: '932d9b60-6cdf-4007-98d1-ea1e4486d505',
+        id: 'eebef189-2e28-4d74-b3a7-9fb28e499d8d',
         title: 'With air conditioning',
-        price: 180
+        price: 103
       }
     ]
   },
@@ -1293,14 +565,14 @@ const mockOffers = [
     type: 'restaurant',
     offers: [
       {
-        id: 'b5eea080-6241-420f-8d9d-67a6efb2cc5c',
+        id: 'f484fb2c-698d-452f-b3ba-927c7cb4d296',
         title: 'Choose live music',
-        price: 150
+        price: 171
       },
       {
-        id: 'd86deb2a-a434-4319-896c-5a7e59829faa',
+        id: '4524d1c9-c50c-4b99-916c-63d1cae90a81',
         title: 'Choose VIP area',
-        price: 70
+        price: 57
       }
     ]
   }
