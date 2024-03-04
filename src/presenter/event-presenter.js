@@ -1,10 +1,11 @@
-import { render, replace } from '../framework/render.js';
+import { render, replace, remove } from '../framework/render.js';
 import EventsListItemView from '../view/events-list-item-view.js';
 import EventView from '../view/event-view.js';
 import EventFormView from '../view/event-form-view.js';
 
 export default class EventPresenter {
   #eventsListContainer = null;
+  #eventListItemComponent = null;
   #eventComponent = null;
   #eventFormComponent = null;
   #eventItem = null;
@@ -30,6 +31,12 @@ export default class EventPresenter {
       offers: this.#blankEventOffers,
     };
 
+    const prevEventListItemComponent = this.#eventListItemComponent;
+    const prevEventComponent = this.#eventComponent;
+    const prevEventFormComponent = this.#eventFormComponent;
+
+    this.#eventListItemComponent = new EventsListItemView();
+
     this.#eventComponent = new EventView({
       event: this.#eventItem,
       onClick: this.#replaceEventToForm,
@@ -42,13 +49,42 @@ export default class EventPresenter {
       onClick: this.#replaceFormToEvent,
     });
 
-    this.#renderEvent();
+    if (prevEventListItemComponent === null
+        || prevEventComponent === null
+        || prevEventFormComponent === null
+    ) {
+      this.#renderEvent();
+      return;
+    }
+
+    // Проверка на наличие в DOM необходима,
+    // чтобы не пытаться заменить то, что не было отрисовано
+    if (this.#eventsListContainer.contains(prevEventListItemComponent.element)) {
+      replace(this.#eventListItemComponent, prevEventListItemComponent);
+    }
+
+    if (this.#eventsListContainer.contains(prevEventComponent.element)) {
+      replace(this.#eventComponent, prevEventComponent);
+    }
+
+    if (this.#eventsListContainer.contains(prevEventFormComponent.element)) {
+      replace(this.#eventFormComponent, prevEventFormComponent);
+    }
+
+    remove(prevEventListItemComponent);
+    remove(prevEventComponent);
+    remove(prevEventFormComponent);
   }
 
   #renderEvent() {
-    const eventListItemComponent = new EventsListItemView();
-    render(this.#eventComponent, eventListItemComponent.element);
-    render(eventListItemComponent, this.#eventsListContainer);
+    render(this.#eventComponent, this.#eventListItemComponent.element);
+    render(this.#eventListItemComponent, this.#eventsListContainer);
+  }
+
+  destroy() {
+    remove(this.#eventListItemComponent);
+    remove(this.#eventComponent);
+    remove(this.#eventFormComponent);
   }
 
   #escKeyDownHandler = (evt) => {
