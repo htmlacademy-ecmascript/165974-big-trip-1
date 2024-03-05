@@ -2,6 +2,11 @@ import { render, replace, remove } from '../framework/render.js';
 import EventView from '../view/event-view.js';
 import EventFormView from '../view/event-form-view.js';
 
+const Mode = {
+  DEFAULT: 'DEFAULT',
+  EDITING: 'EDITING',
+};
+
 export default class EventPresenter {
   #eventsListContainer = null;
   #eventComponent = null;
@@ -9,13 +14,16 @@ export default class EventPresenter {
   #eventItem = null;
   #eventTypes = null;
   #blankEventOffers = null;
+  #mode = Mode.DEFAULT;
   #handleDataChange = null;
+  #handleModeChange = null;
 
-  constructor({ eventsListContainer, eventTypes, blankEventOffers, onDataChange }) {
+  constructor({ eventsListContainer, eventTypes, blankEventOffers, onDataChange, onModeChange }) {
     this.#eventsListContainer = eventsListContainer;
     this.#eventTypes = [...eventTypes];
     this.#blankEventOffers = [...blankEventOffers];
     this.#handleDataChange = onDataChange;
+    this.#handleModeChange = onModeChange;
   }
 
   init(eventItem) {
@@ -54,13 +62,11 @@ export default class EventPresenter {
       return;
     }
 
-    // Проверка на наличие в DOM необходима,
-    // чтобы не пытаться заменить то, что не было отрисовано
-    if (this.#eventsListContainer.contains(prevEventComponent.element)) {
+    if (this.#mode === Mode.DEFAULT) {
       replace(this.#eventComponent, prevEventComponent);
     }
 
-    if (this.#eventsListContainer.contains(prevEventFormComponent.element)) {
+    if (this.#mode === Mode.EDITING) {
       replace(this.#eventFormComponent, prevEventFormComponent);
     }
 
@@ -84,14 +90,23 @@ export default class EventPresenter {
     }
   };
 
+  resetView = () => {
+    if (this.#mode !== Mode.DEFAULT) {
+      this.#replaceFormToEvent();
+    }
+  };
+
   #replaceEventToForm = () => {
     replace(this.#eventFormComponent, this.#eventComponent);
     document.addEventListener('keydown', this.#escKeyDownHandler);
+    this.#handleModeChange();
+    this.#mode = Mode.EDITING;
   };
 
   #replaceFormToEvent = () => {
     replace(this.#eventComponent, this.#eventFormComponent);
     document.removeEventListener('keydown', this.#escKeyDownHandler);
+    this.#mode = Mode.DEFAULT;
   };
 
   #handleFormSubmit = (eventItem) => {
