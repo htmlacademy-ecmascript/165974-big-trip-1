@@ -43,7 +43,7 @@ export default class EventPresenter {
     this.#eventFormComponent = new EventFormView({
       event: this.#eventItem || blankEvent,
       eventTypes: this.#eventTypes,
-      onSubmit: this.#replaceFormToEvent,
+      onSubmit: this.#handleFormSubmit,
       onClick: this.#replaceFormToEvent,
     });
 
@@ -94,10 +94,15 @@ export default class EventPresenter {
     document.removeEventListener('keydown', this.#escKeyDownHandler);
   };
 
+  #handleFormSubmit = (eventItem) => {
+    this.#handleDataChange(eventItem);
+    this.#replaceFormToEvent();
+  };
+
   #handleFavoriteClick = () => {
     this.#handleDataChange({
       ...this.#eventItem,
-      isFavorite: !this.#eventItem.isFavorite
+      isFavorite: !this.#eventItem.isFavorite,
     });
   };
 }
