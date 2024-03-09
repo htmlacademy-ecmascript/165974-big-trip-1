@@ -13,6 +13,18 @@ export default class EventsModel {
     return this.#events;
   }
 
+  updateEvent(updatedEventObj) {
+    if (!this.#events) {
+      return;
+    }
+
+    const foundIndex = this.#events.findIndex((item) => item.id === updatedEventObj.id);
+
+    if (foundIndex !== -1) {
+      this.#events[foundIndex] = updatedEventObj;
+    }
+  }
+
   get eventTypes() {
     return this.#eventTypes;
   }

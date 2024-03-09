@@ -16,4 +16,10 @@ const FilterType = {
   PAST: 'past',
 };
 
-export { EVENT_COUNT, DATE_FORMATS, FilterType };
+const SortType = {
+  DATE_DOWN: 'date-down', // default
+  DURATION_DOWN: 'duration-down',
+  PRICE_DOWN: 'price-down',
+};
+
+export { EVENT_COUNT, DATE_FORMATS, FilterType, SortType };

@@ -1,23 +1,28 @@
+import { SortType } from '../const.js';
+
 const sortCriteria = [
   {
     name: 'day',
-    isChecked: false,
+    isChecked: true,
     isDisabled: false,
+    sortType: SortType.DATE_DOWN,
   },
   {
     name: 'event',
     isChecked: false,
-    isDisabled: false,
+    isDisabled: true,
   },
   {
     name: 'time',
     isChecked: false,
     isDisabled: false,
+    sortType: SortType.DURATION_DOWN,
   },
   {
     name: 'price',
-    isChecked: true,
+    isChecked: false,
     isDisabled: false,
+    sortType: SortType.PRICE_DOWN,
   },
   {
     name: 'offers',

@@ -10,6 +10,7 @@ export default class AppPresenter {
   #siteTripMainElement = null;
   #siteTripFiltersElement = null;
   #siteTripEventsElement = null;
+  #eventsPresenter = null;
 
   constructor({ eventsModel }) {
     this.#eventsModel = eventsModel;
@@ -27,7 +28,7 @@ export default class AppPresenter {
 
   #renderInfo() {
     render(new TripInfoView({
-      events: this.#eventsModel.events
+      eventsModel: this.#eventsModel,
     }), this.#siteTripMainElement, RenderPosition.AFTERBEGIN);
 
     render(new ButtonNewEventView(), this.#siteTripMainElement);
@@ -45,17 +46,21 @@ export default class AppPresenter {
   #renderSort() {
     const sortPresenter = new SortPresenter({
       container: this.#siteTripEventsElement,
+      eventsModel: this.#eventsModel,
+      onSortChange: () => this.#renderEvents(), // handle model change in sort presenter
     });
 
     sortPresenter.init();
   }
 
   #renderEvents() {
-    const eventsPresenter = new EventsPresenter({
-      container: this.#siteTripEventsElement,
-      eventsModel: this.#eventsModel,
-    });
+    if (!this.#eventsPresenter) {
+      this.#eventsPresenter = new EventsPresenter({
+        container: this.#siteTripEventsElement,
+        eventsModel: this.#eventsModel,
+      });
+    }
 
-    eventsPresenter.init();
+    this.#eventsPresenter.init();
   }
 }
