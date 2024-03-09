@@ -1,15 +1,15 @@
-import { render, replace } from '../framework/render.js';
+import { render } from '../framework/render.js';
 import EventsListView from '../view/events-list-view.js';
-import EventsListItemView from '../view/events-list-item-view.js';
-import EventView from '../view/event-view.js';
-import EventFormView from '../view/event-form-view.js';
 import EventsListEmptyView from '../view/events-list-empty-view.js';
+import EventPresenter from './event-presenter.js';
+import { updateItem } from '../utils/common.js';
 
 export default class EventsPresenter {
   #eventsListComponent = new EventsListView();
   #container = null;
   #eventsModel = null;
   #eventsData = null;
+  #eventPresenters = new Map();
 
   constructor({ container, eventsModel }) {
     this.#container = container;
@@ -37,48 +37,29 @@ export default class EventsPresenter {
   #renderEvent(item) {
     const eventTypes = [...this.#eventsModel.eventTypes];
 
-    const blankEvent = {
-      type: eventTypes[0],
-      dateFrom: null,
-      dateTo: null,
-      destination: null,
-      basePrice: 0,
-      isFavorite: false,
-      offers: [...this.#eventsModel.getOffers(eventTypes[0], [])],
-    };
-
-    const escKeyDownHandler = (evt) => {
-      if (evt.key === 'Escape') {
-        evt.preventDefault();
-        replaceFormToEvent();
-      }
-    };
-
-    const eventListItemComponent = new EventsListItemView();
-
-    const eventComponent = new EventView({
-      event: item,
-      onClick: replaceEventToForm,
-    });
-
-    const eventFormComponent = new EventFormView({
-      event: this.#eventsData[0] || blankEvent,
+    const eventPresenter = new EventPresenter({
+      eventsListContainer: this.#eventsListComponent.element,
       eventTypes,
-      onSubmit: replaceFormToEvent,
-      onClick: replaceFormToEvent,
+      blankEventOffers: this.#eventsModel.getOffers(eventTypes[0], []),
+      onDataChange: this.#handleEventChange,
+      onModeChange: this.#handleModeChange,
     });
 
-    function replaceEventToForm() {
-      replace(eventFormComponent, eventComponent);
-      document.addEventListener('keydown', escKeyDownHandler);
-    }
-
-    function replaceFormToEvent() {
-      replace(eventComponent, eventFormComponent);
-      document.removeEventListener('keydown', escKeyDownHandler);
-    }
-
-    render(eventComponent, eventListItemComponent.element);
-    render(eventListItemComponent, this.#eventsListComponent.element);
+    eventPresenter.init(item);
+    this.#eventPresenters.set(item.id, eventPresenter);
   }
+
+  #clearEventList() {
+    this.#eventPresenters.forEach((presenter) => presenter.destroy());
+    this.#eventPresenters.clear();
+  }
+
+  #handleEventChange = (updatedEvent) => {
+    this.#eventsData = updateItem(this.#eventsData, updatedEvent);
+    this.#eventPresenters.get(updatedEvent.id).init(updatedEvent);
+  };
+
+  #handleModeChange = () => {
+    this.#eventPresenters.forEach((presenter) => presenter.resetView());
+  };
 }
