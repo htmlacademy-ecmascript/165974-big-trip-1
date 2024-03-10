@@ -1,15 +1,14 @@
 import { render, remove } from '../framework/render.js';
 import SortView from '../view/sort-view.js';
-import { sortEventsByDateDown, sortEventsByPriceDown, sortEventsByDurationDown } from '../utils/sort.js';
-import { SortType } from '../const.js';
-import { sortCriteria as criteria } from '../mock/sort-data.js';
+import { sortEventsByDateUp, sortEventsByPriceDown, sortEventsByDurationDown } from '../utils/sort.js';
+import { SortType, SortCriteria as criteria } from '../const.js';
 
 export default class SortPresenter {
   #container = null;
   #eventsModel = null;
   #criteria = [];
   #sortComponent = null;
-  #currentSortType = SortType.DATE_DOWN;
+  #currentSortType = SortType.DATE_UP;
   #onSortChange = null;
 
   constructor({ container, eventsModel, onSortChange }) {
@@ -20,7 +19,7 @@ export default class SortPresenter {
   }
 
   init() {
-    this.#sortEvents(SortType.DATE_DOWN); // ? this.#sortEvents(this.#currentSortType) ?
+    this.#sortEvents(SortType.DATE_UP); // ? this.#sortEvents(this.#currentSortType) ?
     this.#renderSort();
   }
 
@@ -60,11 +59,11 @@ export default class SortPresenter {
       case SortType.PRICE_DOWN:
         this.#eventsModel.events.sort(sortEventsByPriceDown);
         break;
-      case SortType.DATE_DOWN:
-        this.#eventsModel.events.sort(sortEventsByDateDown);
+      case SortType.DATE_UP:
+        this.#eventsModel.events.sort(sortEventsByDateUp);
         break;
       default:
-        this.#eventsModel.events.sort(sortEventsByDateDown);
+        this.#eventsModel.events.sort(sortEventsByDateUp);
     }
 
     this.#currentSortType = sortType;

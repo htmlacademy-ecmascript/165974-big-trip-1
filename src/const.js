@@ -17,9 +17,41 @@ const FilterType = {
 };
 
 const SortType = {
-  DATE_DOWN: 'date-down', // default
+  DATE_UP: 'date-up', // default
+  DATE_DOWN: 'date-down',
   DURATION_DOWN: 'duration-down',
   PRICE_DOWN: 'price-down',
 };
 
-export { EVENT_COUNT, DATE_FORMATS, FilterType, SortType };
+const SortCriteria = [
+  {
+    name: 'day',
+    isChecked: true,
+    isDisabled: false,
+    sortType: SortType.DATE_UP,
+  },
+  {
+    name: 'event',
+    isChecked: false,
+    isDisabled: true,
+  },
+  {
+    name: 'time',
+    isChecked: false,
+    isDisabled: false,
+    sortType: SortType.DURATION_DOWN,
+  },
+  {
+    name: 'price',
+    isChecked: false,
+    isDisabled: false,
+    sortType: SortType.PRICE_DOWN,
+  },
+  {
+    name: 'offers',
+    isChecked: false,
+    isDisabled: true,
+  },
+];
+
+export { EVENT_COUNT, DATE_FORMATS, FilterType, SortType, SortCriteria };
